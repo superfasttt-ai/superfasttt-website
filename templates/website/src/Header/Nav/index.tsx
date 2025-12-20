@@ -14,11 +14,12 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
 
   return (
-    <nav className="flex gap-3 items-center">
+    <nav className="flex items-center gap-1">
       {navItems.map((item, i) => {
         const { label, type, link, megaMenu } = item
 
         if (type === 'mega-menu' && megaMenu?.sections) {
+          const isOpen = openMenu === (item.id || String(i))
           return (
             <div
               key={i}
@@ -26,11 +27,19 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               onMouseEnter={() => setOpenMenu(item.id || String(i))}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <button className="flex items-center gap-1 text-sm hover:text-primary transition-colors">
+              <button
+                className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+                  isOpen
+                    ? 'bg-zinc-800 text-white'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                }`}
+              >
                 {label}
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                />
               </button>
-              {openMenu === (item.id || String(i)) && (
+              {isOpen && (
                 <MegaMenu sections={megaMenu.sections} onClose={() => setOpenMenu(null)} />
               )}
             </div>
@@ -39,7 +48,12 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
         if (type === 'link' && link) {
           return (
-            <CMSLink key={i} {...link} appearance="link">
+            <CMSLink
+              key={i}
+              {...link}
+              appearance="link"
+              className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+            >
               {label}
             </CMSLink>
           )
@@ -48,27 +62,37 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         return null
       })}
 
+      {/* Separator */}
+      <div className="w-px h-6 bg-zinc-700 mx-2" />
+
+      {/* Login Link */}
+      {data.loginLink?.label && data.loginLink?.url && (
+        <Link
+          href={data.loginLink.url}
+          className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+        >
+          {data.loginLink.label}
+        </Link>
+      )}
+
       {/* CTA Button */}
       {data.ctaButton?.label && data.ctaButton?.link && (
         <CMSLink
           {...data.ctaButton.link}
           appearance="default"
-          className="ml-2 bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
+          className="ml-1 px-5 py-2.5 text-sm font-semibold bg-white text-zinc-900 rounded-full hover:bg-zinc-200 transition-all duration-200 shadow-lg shadow-white/10"
         >
           {data.ctaButton.label}
         </CMSLink>
       )}
 
-      {/* Login Link */}
-      {data.loginLink?.label && data.loginLink?.url && (
-        <Link href={data.loginLink.url} className="text-sm hover:text-primary transition-colors">
-          {data.loginLink.label}
-        </Link>
-      )}
-
-      <Link href="/search">
+      {/* Search */}
+      <Link
+        href="/search"
+        className="ml-2 p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+      >
         <span className="sr-only">Search</span>
-        <SearchIcon className="w-5 text-primary" />
+        <SearchIcon className="w-4 h-4" />
       </Link>
     </nav>
   )
