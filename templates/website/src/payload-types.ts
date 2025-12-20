@@ -108,7 +108,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('fr' | 'en' | 'es') | ('fr' | 'en' | 'es')[];
   globals: {
     header: Header;
     footer: Footer;
@@ -117,7 +117,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
-  locale: null;
+  locale: 'fr' | 'en' | 'es';
   user: User & {
     collection: 'users';
   };
@@ -1635,9 +1635,18 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  /**
+   * Logo du site (optionnel)
+   */
+  logo?: (string | null) | Media;
   navItems?:
     | {
-        link: {
+        /**
+         * Texte affiché dans le menu
+         */
+        label: string;
+        type: 'link' | 'mega-menu';
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -1652,9 +1661,70 @@ export interface Header {
           url?: string | null;
           label: string;
         };
+        megaMenu?: {
+          sections?:
+            | {
+                /**
+                 * Titre de la section (optionnel)
+                 */
+                title?: string | null;
+                links?:
+                  | {
+                      label: string;
+                      /**
+                       * Description courte (optionnel)
+                       */
+                      description?: string | null;
+                      /**
+                       * Icône ou emoji (optionnel)
+                       */
+                      icon?: string | null;
+                      link?: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: string | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: string | Post;
+                            } | null);
+                        url?: string | null;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
         id?: string | null;
       }[]
     | null;
+  showLanguageSelector?: boolean | null;
+  ctaButton?: {
+    label?: string | null;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+    };
+  };
+  loginLink?: {
+    label?: string | null;
+    url?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1664,26 +1734,65 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  /**
+   * Logo du footer (optionnel)
+   */
+  logo?: (string | null) | Media;
+  columns?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        /**
+         * Titre de la colonne (ex: Produit, Secteurs...)
+         */
+        title: string;
+        links?:
+          | {
+              label: string;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
+  bottomBar?: {
+    /**
+     * Texte de copyright
+     */
+    copyright?: string | null;
+    badges?:
+      | {
+          /**
+           * Ex: Hébergé en France, Conforme RGPD
+           */
+          label: string;
+          /**
+           * Emoji ou nom d'icône (optionnel)
+           */
+          icon?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    socialLinks?:
+      | {
+          platform: 'linkedin' | 'github' | 'twitter' | 'youtube' | 'instagram';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1692,9 +1801,12 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
   navItems?:
     | T
     | {
+        label?: T;
+        type?: T;
         link?:
           | T
           | {
@@ -1704,7 +1816,53 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        megaMenu?:
+          | T
+          | {
+              sections?:
+                | T
+                | {
+                    title?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          description?: T;
+                          icon?: T;
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+            };
         id?: T;
+      };
+  showLanguageSelector?: T;
+  ctaButton?:
+    | T
+    | {
+        label?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+      };
+  loginLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1715,19 +1873,45 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  logo?: T;
+  columns?:
     | T
     | {
-        link?:
+        title?: T;
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
               label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              id?: T;
             };
         id?: T;
+      };
+  bottomBar?:
+    | T
+    | {
+        copyright?: T;
+        badges?:
+          | T
+          | {
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
