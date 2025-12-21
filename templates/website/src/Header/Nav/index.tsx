@@ -28,17 +28,25 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               onMouseLeave={() => setOpenMenu(null)}
             >
               <button
-                className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+                className={`relative flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200 ${
                   isOpen
-                    ? 'bg-zinc-800 text-white'
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                    ? 'text-black dark:text-white'
+                    : 'text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white'
                 }`}
               >
                 {label}
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                 />
+                {/* Indicateur blanc sous la rubrique active */}
+                {isOpen && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-black dark:bg-white" />
+                )}
               </button>
+              {/* Zone de liaison invisible pour éviter que le menu se ferme */}
+              {isOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full w-[800px] h-[60px]" />
+              )}
               {isOpen && (
                 <MegaMenu sections={megaMenu.sections} onClose={() => setOpenMenu(null)} />
               )}
@@ -52,7 +60,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               key={i}
               {...link}
               appearance="link"
-              className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+              className="px-4 py-2 text-sm font-medium text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
             >
               {label}
             </CMSLink>
@@ -63,13 +71,13 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       })}
 
       {/* Separator */}
-      <div className="w-px h-6 bg-zinc-700 mx-2" />
+      <div className="w-px h-6 bg-zinc-300 dark:bg-zinc-700 mx-2" />
 
       {/* Login Link */}
       {data.loginLink?.label && data.loginLink?.url && (
         <Link
           href={data.loginLink.url}
-          className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+          className="px-4 py-2 text-sm font-medium text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
         >
           {data.loginLink.label}
         </Link>
@@ -80,7 +88,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         <CMSLink
           {...data.ctaButton.link}
           appearance="default"
-          className="ml-1 px-5 py-2.5 text-sm font-semibold bg-white text-zinc-900 rounded-full hover:bg-zinc-200 transition-all duration-200 shadow-lg shadow-white/10"
+          className="ml-1 px-4 py-2 text-sm font-medium bg-black dark:bg-white text-white dark:text-black border border-black dark:border-white hover:bg-transparent hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-all duration-200"
         >
           {data.ctaButton.label}
         </CMSLink>
@@ -89,7 +97,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       {/* Search */}
       <Link
         href="/search"
-        className="ml-2 p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+        className="ml-2 p-2.5 text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
       >
         <span className="sr-only">Search</span>
         <SearchIcon className="w-4 h-4" />

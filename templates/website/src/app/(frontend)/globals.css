@@ -101,3 +101,100 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+/* Foundation Visual Animations */
+.foundation-line {
+  animation: lineGlow 3s ease-in-out infinite;
+}
+
+.foundation-ray {
+  animation: rayPulse 4s ease-in-out infinite;
+}
+
+.triangle-main {
+  animation: triangleGlow 3s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+  0%, 100% {
+    stroke-opacity: 0.3;
+  }
+  50% {
+    stroke-opacity: 0.8;
+  }
+}
+
+@keyframes rayPulse {
+  0%, 100% {
+    opacity: 0.3;
+    stroke-width: 1;
+  }
+  50% {
+    opacity: 0.7;
+    stroke-width: 2;
+  }
+}
+
+@keyframes triangleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(52, 211, 153, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.6));
+  }
+}
+
+/* Glow Card Effect */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(52, 211, 153, 0.4) 60deg,
+    rgba(34, 211, 238, 0.5) 120deg,
+    rgba(59, 130, 246, 0.4) 180deg,
+    transparent 240deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  animation: glowSpin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: hsl(var(--card));
+  pointer-events: none;
+}
+
+.glow-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-card:hover::before,
+.glow-card--animating::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes glowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

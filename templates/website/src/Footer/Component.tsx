@@ -3,10 +3,16 @@ import Link from 'next/link'
 import React from 'react'
 
 import type { Footer as FooterType, Media } from '@/payload-types'
+import type { Locale } from '@/i18n/config'
+import { defaultLocale } from '@/i18n/config'
 
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
+
+type FooterProps = {
+  locale?: Locale
+}
 
 const SocialIcon: React.FC<{ platform: string }> = ({ platform }) => {
   switch (platform) {
@@ -45,8 +51,8 @@ const SocialIcon: React.FC<{ platform: string }> = ({ platform }) => {
   }
 }
 
-export async function Footer() {
-  const footerData: FooterType = await getCachedGlobal('footer', 1)()
+export async function Footer({ locale = defaultLocale }: FooterProps) {
+  const footerData: FooterType = await getCachedGlobal('footer', 1, locale)()
 
   const columns = footerData?.columns || []
   const bottomBar = footerData?.bottomBar

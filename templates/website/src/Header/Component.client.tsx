@@ -64,10 +64,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale = 'fr' 
       >
         <div className="container mx-auto px-4">
           <div
-            className={`mt-4 flex justify-between items-center px-4 lg:px-6 py-3 rounded-full transition-all duration-300 ${
+            className={`mt-4 flex justify-between items-center px-4 lg:px-6 py-3 transition-all duration-300 ${
               scrolled
-                ? 'bg-zinc-950/90 backdrop-blur-xl border border-zinc-800/50 shadow-xl shadow-black/10'
-                : 'bg-zinc-950/70 backdrop-blur-md border border-zinc-800/30'
+                ? 'bg-white dark:bg-black backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800/50'
+                : 'bg-white dark:bg-black'
             }`}
           >
             <Link href="/" className="flex items-center">
@@ -75,10 +75,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale = 'fr' 
                 <img
                   src={logoMedia.url}
                   alt={logoMedia.alt || 'Logo'}
-                  className="h-7 w-auto brightness-0 invert"
+                  className="h-7 w-auto dark:brightness-0 dark:invert"
                 />
               ) : (
-                <Logo loading="eager" priority="high" className="brightness-0 invert" />
+                <Logo loading="eager" priority="high" className="dark:brightness-0 dark:invert" />
               )}
             </Link>
 
@@ -91,7 +91,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale = 'fr' 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-2 text-zinc-400 hover:text-white hover:bg-zinc-800/50 rounded-full transition-colors"
+              className="lg:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors"
               aria-label="Ouvrir le menu"
             >
               <Menu className="w-5 h-5" />

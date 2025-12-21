@@ -200,7 +200,21 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | AnimationBlock
+    | HeroModernBlock
+    | LogoCloudBlock
+    | StatsSectionBlock
+    | FeatureGridBlock
+    | ProductShowcaseBlock
+    | SectorCardsBlock
+    | CtaModernBlock
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -436,6 +450,307 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimationBlock".
+ */
+export interface AnimationBlock {
+  /**
+   * Sélectionnez l'animation à afficher
+   */
+  animationId: 'brain' | 'assistants' | 'models' | 'connectors' | 'marketing' | 'rnd' | 'support';
+  layout?: ('full' | 'text-left' | 'text-right' | 'centered-small' | 'centered-medium') | null;
+  title?: string | null;
+  description?: string | null;
+  aspectRatio?: ('video' | 'standard' | 'square') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'animation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroModernBlock".
+ */
+export interface HeroModernBlock {
+  /**
+   * Petit texte au-dessus du titre (ex: "Nouveau", "IA Souveraine")
+   */
+  badge?: string | null;
+  title: string;
+  /**
+   * Partie du titre avec effet gradient
+   */
+  highlightedText?: string | null;
+  description: string;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  trustIndicators?: {
+    /**
+     * Ex: "Conforme aux standards européens"
+     */
+    headline?: string | null;
+    indicators?:
+      | {
+          icon: 'shield' | 'globe' | 'lock' | 'check' | 'star' | 'zap';
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  showGridPattern?: boolean | null;
+  showGradientOrbs?: boolean | null;
+  /**
+   * Triangle animé avec lignes convergentes style Vercel
+   */
+  showFoundationVisual?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroModern';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCloudBlock".
+ */
+export interface LogoCloudBlock {
+  /**
+   * Ex: "Ils nous font confiance" ou "Utilisé par les meilleures équipes"
+   */
+  headline?: string | null;
+  logos: {
+    /**
+     * Recommandé: SVG ou PNG transparent, hauteur max 40px
+     */
+    logo: string | Media;
+    /**
+     * Pour l'accessibilité (attribut alt)
+     */
+    name: string;
+    url?: string | null;
+    id?: string | null;
+  }[];
+  variant?: ('default' | 'withBackground' | 'marquee') | null;
+  /**
+   * Les logos deviennent colorés au survol
+   */
+  grayscale?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logoCloud';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsSectionBlock".
+ */
+export interface StatsSectionBlock {
+  badge?: string | null;
+  title?: string | null;
+  description?: string | null;
+  stats: {
+    /**
+     * Ex: "99.9%", "10M+", "24x", "<50ms"
+     */
+    value: string;
+    /**
+     * Ex: "Uptime", "Utilisateurs", "Plus rapide"
+     */
+    label: string;
+    /**
+     * Texte explicatif supplémentaire
+     */
+    description?: string | null;
+    id?: string | null;
+  }[];
+  variant?: ('default' | 'cards' | 'gradient') | null;
+  columns?: ('2' | '3' | '4') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'statsSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureGridBlock".
+ */
+export interface FeatureGridBlock {
+  badge?: string | null;
+  title: string;
+  description?: string | null;
+  features: {
+    icon:
+      | 'brain'
+      | 'database'
+      | 'cloud'
+      | 'shield'
+      | 'users'
+      | 'zap'
+      | 'code'
+      | 'globe'
+      | 'lock'
+      | 'layers'
+      | 'settings'
+      | 'chart';
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  columns?: ('2' | '3' | '4') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductShowcaseBlock".
+ */
+export interface ProductShowcaseBlock {
+  badge?: string | null;
+  title: string;
+  description?: string | null;
+  items: {
+    title: string;
+    description: string;
+    /**
+     * Image ou capture d'écran illustrant la fonctionnalité
+     */
+    image?: (string | null) | Media;
+    icon?:
+      | (
+          | 'brain'
+          | 'database'
+          | 'cloud'
+          | 'shield'
+          | 'users'
+          | 'zap'
+          | 'code'
+          | 'globe'
+          | 'lock'
+          | 'layers'
+          | 'settings'
+          | 'chart'
+          | 'headphones'
+          | 'rocket'
+          | 'terminal'
+          | 'workflow'
+        )
+      | null;
+    features?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    itemLinks?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: string | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  layout?: ('grid' | 'bento' | 'alternating') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productShowcase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SectorCardsBlock".
+ */
+export interface SectorCardsBlock {
+  badge?: string | null;
+  title: string;
+  description?: string | null;
+  sectors: {
+    icon: 'building' | 'heart' | 'banknote' | 'scale' | 'shieldCheck' | 'briefcase' | 'factory' | 'landmark';
+    title: string;
+    description: string;
+    features?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sectorCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaModernBlock".
+ */
+export interface CtaModernBlock {
+  title: string;
+  description?: string | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  variant?: ('gradient' | 'dark' | 'bordered') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaModern';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1082,6 +1397,14 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        animation?: T | AnimationBlockSelect<T>;
+        heroModern?: T | HeroModernBlockSelect<T>;
+        logoCloud?: T | LogoCloudBlockSelect<T>;
+        statsSection?: T | StatsSectionBlockSelect<T>;
+        featureGrid?: T | FeatureGridBlockSelect<T>;
+        productShowcase?: T | ProductShowcaseBlockSelect<T>;
+        sectorCards?: T | SectorCardsBlockSelect<T>;
+        ctaModern?: T | CtaModernBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -1101,6 +1424,214 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimationBlock_select".
+ */
+export interface AnimationBlockSelect<T extends boolean = true> {
+  animationId?: T;
+  layout?: T;
+  title?: T;
+  description?: T;
+  aspectRatio?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroModernBlock_select".
+ */
+export interface HeroModernBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  highlightedText?: T;
+  description?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  trustIndicators?:
+    | T
+    | {
+        headline?: T;
+        indicators?:
+          | T
+          | {
+              icon?: T;
+              label?: T;
+              id?: T;
+            };
+      };
+  showGridPattern?: T;
+  showGradientOrbs?: T;
+  showFoundationVisual?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCloudBlock_select".
+ */
+export interface LogoCloudBlockSelect<T extends boolean = true> {
+  headline?: T;
+  logos?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        url?: T;
+        id?: T;
+      };
+  variant?: T;
+  grayscale?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsSectionBlock_select".
+ */
+export interface StatsSectionBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        description?: T;
+        id?: T;
+      };
+  variant?: T;
+  columns?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureGridBlock_select".
+ */
+export interface FeatureGridBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  columns?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductShowcaseBlock_select".
+ */
+export interface ProductShowcaseBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        icon?: T;
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        itemLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  layout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SectorCardsBlock_select".
+ */
+export interface SectorCardsBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  sectors?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaModernBlock_select".
+ */
+export interface CtaModernBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

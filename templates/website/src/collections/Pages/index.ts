@@ -2,11 +2,19 @@ import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
+import { Animation } from '../../blocks/Animation/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
+import { CtaModern } from '../../blocks/CtaModern/config'
+import { FeatureGrid } from '../../blocks/FeatureGrid/config'
 import { FormBlock } from '../../blocks/Form/config'
+import { HeroModern } from '../../blocks/HeroModern/config'
+import { LogoCloud } from '../../blocks/LogoCloud/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { ProductShowcase } from '../../blocks/ProductShowcase/config'
+import { SectorCards } from '../../blocks/SectorCards/config'
+import { StatsSection } from '../../blocks/StatsSection/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -59,6 +67,7 @@ export const Pages: CollectionConfig<'pages'> = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       type: 'tabs',
@@ -72,8 +81,23 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                Animation,
+                HeroModern,
+                LogoCloud,
+                StatsSection,
+                FeatureGrid,
+                ProductShowcase,
+                SectorCards,
+                CtaModern,
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+              ],
               required: true,
+              localized: true,
               admin: {
                 initCollapsed: true,
               },
@@ -84,6 +108,7 @@ export const Pages: CollectionConfig<'pages'> = {
         {
           name: 'meta',
           label: 'SEO',
+          localized: true,
           fields: [
             OverviewField({
               titlePath: 'meta.title',
@@ -117,7 +142,9 @@ export const Pages: CollectionConfig<'pages'> = {
         position: 'sidebar',
       },
     },
-    slugField(),
+    slugField({
+      localized: true,
+    }),
   ],
   hooks: {
     afterChange: [revalidatePage],
