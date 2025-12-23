@@ -7,6 +7,15 @@
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
+    "content:dry-run": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/generate.ts --dry-run",
+    "content:errors": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/errors.ts",
+    "content:generate": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/generate.ts",
+    "content:industries": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/generate.ts --type=industry --all-locales",
+    "content:metiers": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/generate.ts --type=metier --all-locales",
+    "content:preview": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/preview-brief.ts",
+    "content:services": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/generate.ts --type=service --all-locales",
+    "content:status": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/status.ts",
+    "content:taxonomy": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' tsx src/scripts/content-pipeline/commands/taxonomy.ts",
     "dev": "cross-env NODE_OPTIONS='--no-deprecation --import tsx/esm' next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -25,6 +34,7 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "0.71.2",
     "@payloadcms/admin-bar": "workspace:*",
     "@payloadcms/db-mongodb": "workspace:*",
     "@payloadcms/live-preview-react": "workspace:*",

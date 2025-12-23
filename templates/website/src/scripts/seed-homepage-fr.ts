@@ -102,7 +102,7 @@ const getHomepageData = (): RequiredDataFromCollectionSlug<'pages'> => {
         blockType: 'productShowcase',
         blockName: 'Contrôle par service',
         badge: 'Contrôle par service',
-        title: 'Un modèle par métier. Vous décidez.',
+        title: 'Un modèle par métier.\nVous décidez.',
         description:
           "SUPERFASTTT vous permet de définir précisément quel modèle d'IA utilise chaque département — selon ses contraintes de confidentialité, de performance et de coût.",
         layout: 'alternating',
@@ -119,9 +119,9 @@ const getHomepageData = (): RequiredDataFromCollectionSlug<'pages'> => {
             ],
           },
           {
-            title: 'R&D',
+            title: 'Métier',
             description:
-              "La R&D travaille sur des brevets, des formules, des plans techniques — données ultra-confidentielles. Un modèle local ou souverain s'impose.",
+              'Vos équipes métier manipulent des données sensibles : contrats, bilans, plans stratégiques. Un modèle souverain garantit leur confidentialité.',
             icon: 'shield',
             features: [
               { text: 'Modèle local ou souverain' },
@@ -411,7 +411,7 @@ async function seedHomepageFR() {
   console.log(
     '   - FeatureGrid: Les 4 piliers (souveraineté, modèles, visibilité, interopérabilité)',
   )
-  console.log('   - ProductShowcase: Contrôle par service (Marketing, R&D, Support)')
+  console.log('   - ProductShowcase: Contrôle par service (Marketing, Métier, Support)')
   console.log('   - FeatureGrid: Gouvernance (dashboard, alertes, historique, règles)')
   console.log('   - FeatureGrid: 6 fonctionnalités clés')
   console.log('   - StatsSection: Conformité (RGPD, HDS, ACPR, SecNumCloud)')

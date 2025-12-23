@@ -635,21 +635,24 @@ export interface ProductShowcaseBlock {
      * Image ou capture d'écran illustrant la fonctionnalité
      */
     image?: (string | null) | Media;
+    /**
+     * 🎬 = animation SVG animée, 🔷 = icône statique Lucide
+     */
     icon?:
       | (
           | 'brain'
-          | 'database'
-          | 'cloud'
-          | 'shield'
           | 'users'
+          | 'layers'
+          | 'cloud'
           | 'zap'
+          | 'shield'
+          | 'headphones'
+          | 'database'
           | 'code'
           | 'globe'
           | 'lock'
-          | 'layers'
           | 'settings'
           | 'chart'
-          | 'headphones'
           | 'rocket'
           | 'terminal'
           | 'workflow'

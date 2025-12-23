@@ -437,7 +437,12 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
             )}
             {title && (
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
-                {title}
+                {title.split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i < title.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </h2>
             )}
             {description && <p className="text-lg text-muted-foreground">{description}</p>}

@@ -19,7 +19,7 @@ export const Animation: Block = {
         { label: 'Models (Modèles IA)', value: 'models' },
         { label: 'Connectors (Outils connectés)', value: 'connectors' },
         { label: 'Marketing (Contenu créatif)', value: 'marketing' },
-        { label: 'R&D (Sécurité)', value: 'rnd' },
+        { label: 'Métier (Données sécurisées)', value: 'rnd' },
         { label: 'Support (Service client)', value: 'support' },
       ],
       admin: {
