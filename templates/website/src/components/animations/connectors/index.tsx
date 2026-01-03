@@ -8,9 +8,9 @@ interface ConnectorsProps {
 
 // Outils/services connectés - alignés horizontalement
 const CONNECTORS = [
-  { id: 'drive', x: 80, y: 90, color: '#4ade80', delay: 0 }, // Google Drive - vert
-  { id: 'sharepoint', x: 180, y: 90, color: '#38bdf8', delay: 0.3 }, // SharePoint - bleu clair
-  { id: 'slack', x: 280, y: 90, color: '#e879f9', delay: 0.6 }, // Slack - violet/rose
+  { id: 'drive', x: 80, y: 90, color: '#22C55E', delay: 0 }, // Google Drive - success vert
+  { id: 'sharepoint', x: 180, y: 90, color: '#0d9488', delay: 0.3 }, // SharePoint - secondaire
+  { id: 'slack', x: 280, y: 90, color: '#14B8A6', delay: 0.6 }, // Slack - accent teal
   { id: 'notion', x: 380, y: 90, color: '#f8fafc', delay: 0.9 }, // Notion - blanc
   { id: 'more', x: 480, y: 90, color: '#6b7280', delay: 1.2 }, // Plus - gris
 ]
@@ -223,7 +223,7 @@ export const Connectors: React.FC<ConnectorsProps> = ({ className = '' }) => {
             height="100"
             rx="20"
             fill="none"
-            stroke="#22d3ee"
+            stroke="#14B8A6"
             strokeWidth="1"
             opacity="0"
           >
@@ -276,7 +276,7 @@ export const Connectors: React.FC<ConnectorsProps> = ({ className = '' }) => {
             <path
               d="M-8 4V-4M-8 -4L-12 0M-8 -4L-4 0"
               fill="none"
-              stroke="#22d3ee"
+              stroke="#14B8A6"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.8"
@@ -284,7 +284,7 @@ export const Connectors: React.FC<ConnectorsProps> = ({ className = '' }) => {
             <path
               d="M8 -4V4M8 4L4 0M8 4L12 0"
               fill="none"
-              stroke="#4ade80"
+              stroke="#22C55E"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.8"
@@ -299,7 +299,7 @@ export const Connectors: React.FC<ConnectorsProps> = ({ className = '' }) => {
             { x: 280, y: 160, delay: 0.8 },
             { x: 430, y: 180, delay: 1.6 },
           ].map((p, i) => (
-            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#22d3ee" opacity="0">
+            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#14B8A6" opacity="0">
               <animate
                 attributeName="cy"
                 values={`${p.y};${p.y - 15};${p.y}`}

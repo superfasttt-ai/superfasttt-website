@@ -14,6 +14,7 @@
  *   pnpm content:generate --dry-run              # Preview what would be generated
  *   pnpm content:generate --no-research          # Skip Serper.dev research
  *   pnpm content:generate --no-images            # Skip image brief generation
+ *   pnpm content:generate --with-faq             # Also generate FAQ for each page
  */
 
 import 'dotenv/config'
@@ -35,6 +36,7 @@ async function main() {
   console.log(`Dry run: ${options.dryRun ? 'yes' : 'no'}`)
   console.log(`Include research: ${options.includeResearch ? 'yes' : 'no'}`)
   console.log(`Generate images: ${options.generateImageBriefs ? 'yes' : 'no'}`)
+  console.log(`With FAQ: ${options.withFaq ? 'yes' : 'no'}`)
   console.log('═══════════════════════════════════════\n')
 
   try {
@@ -51,6 +53,7 @@ async function main() {
       asDraft: options.asDraft ?? true,
       includeResearch: options.includeResearch ?? true,
       generateImageBriefs: options.generateImageBriefs ?? true,
+      withFaq: options.withFaq ?? false,
     })
 
     console.log('\n═══════════════════════════════════════')

@@ -89,26 +89,57 @@ const iconComponents: Record<string, React.FC<{ className?: string }>> = {
   ),
 }
 
-export const SectorCardsBlock: React.FC<SectorCardsBlockProps> = ({
+type BackgroundStyle = 'white' | 'muted' | 'dark'
+
+interface SectorCardsBlockComponentProps extends SectorCardsBlockProps {
+  backgroundStyle?: BackgroundStyle
+}
+
+export const SectorCardsBlock: React.FC<SectorCardsBlockComponentProps> = ({
   badge,
   title,
   description,
   sectors,
+  backgroundStyle = 'white',
 }) => {
+  const isDark = backgroundStyle === 'dark'
+
+  const sectionBg = {
+    white: 'bg-background',
+    muted: 'bg-muted/50',
+    dark: 'bg-primary',
+  }
+
   return (
-    <section className="py-24 bg-background border-t border-border">
+    <section className={cn('py-24', sectionBg[backgroundStyle])}>
       <div className="container px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           {badge && (
-            <div className="inline-flex items-center rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
+            <div
+              className={cn(
+                'inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-4',
+                isDark
+                  ? 'border-white/20 bg-white/10 text-white/80'
+                  : 'border-border bg-card text-muted-foreground',
+              )}
+            >
               {badge}
             </div>
           )}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
+          <h2
+            className={cn(
+              'text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4',
+              isDark ? 'text-white' : 'text-foreground',
+            )}
+          >
             {title}
           </h2>
-          {description && <p className="text-lg text-muted-foreground">{description}</p>}
+          {description && (
+            <p className={cn('text-lg', isDark ? 'text-white/70' : 'text-muted-foreground')}>
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Sectors Grid */}
@@ -122,41 +153,74 @@ export const SectorCardsBlock: React.FC<SectorCardsBlockProps> = ({
         >
           {sectors?.map((sector, index) => {
             const IconComponent = iconComponents[sector.icon] || iconComponents.briefcase
+            // Alterner les variantes pour plus de dynamisme
+            const cardVariant = isDark ? 'dark' : index % 2 === 0 ? 'gradient' : 'default'
             return (
-              <GlowCard key={index} className="p-8">
+              <GlowCard key={index} className="p-8" variant={cardVariant}>
                 <div className="relative">
-                  {/* Icon */}
-                  <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                    <IconComponent className="w-6 h-6" />
+                  {/* Icon avec gradient */}
+                  <div
+                    className={cn(
+                      'mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl transition-transform duration-300 group-hover:scale-110',
+                      isDark
+                        ? 'bg-gradient-to-br from-accent/30 to-accent/10 text-accent border border-accent/30'
+                        : 'bg-gradient-to-br from-accent/20 to-secondary/10 text-accent border border-accent/20',
+                    )}
+                  >
+                    <IconComponent className="w-7 h-7" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{sector.title}</h3>
+                  <h3
+                    className={cn(
+                      'text-xl font-semibold mb-3',
+                      isDark ? 'text-white' : 'text-foreground',
+                    )}
+                  >
+                    {sector.title}
+                  </h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{sector.description}</p>
+                  <p
+                    className={cn(
+                      'mb-6 leading-relaxed',
+                      isDark ? 'text-white/70' : 'text-muted-foreground',
+                    )}
+                  >
+                    {sector.description}
+                  </p>
 
                   {/* Features list */}
                   {sector.features && sector.features.length > 0 && (
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {sector.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
+                          className={cn(
+                            'flex items-center gap-3 text-sm',
+                            isDark ? 'text-white/70' : 'text-muted-foreground',
+                          )}
                         >
-                          <svg
-                            className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                          <div
+                            className={cn(
+                              'flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center',
+                              isDark ? 'bg-accent/20' : 'bg-accent/10',
+                            )}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
+                            <svg
+                              className="w-3 h-3 text-accent"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={3}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
                           {feature.text}
                         </li>
                       ))}

@@ -135,12 +135,19 @@ const iconComponents: Record<string, React.FC<{ className?: string }>> = {
   ),
 }
 
-export const FeatureGridBlock: React.FC<FeatureGridBlockProps> = ({
+type BackgroundStyle = 'white' | 'muted' | 'dark'
+
+interface FeatureGridBlockComponentProps extends FeatureGridBlockProps {
+  backgroundStyle?: BackgroundStyle
+}
+
+export const FeatureGridBlock: React.FC<FeatureGridBlockComponentProps> = ({
   badge,
   title,
   description,
   features,
   columns = '3',
+  backgroundStyle = 'white',
 }) => {
   const gridCols = {
     '2': 'md:grid-cols-2',
@@ -148,39 +155,84 @@ export const FeatureGridBlock: React.FC<FeatureGridBlockProps> = ({
     '4': 'md:grid-cols-2 lg:grid-cols-4',
   }
 
+  const isDark = backgroundStyle === 'dark'
+
+  const sectionBg = {
+    white: 'bg-background',
+    muted: 'bg-muted/50',
+    dark: 'bg-primary',
+  }
+
   return (
-    <section className="py-24 bg-background">
+    <section className={cn('py-24', sectionBg[backgroundStyle])}>
       <div className="container px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           {badge && (
-            <div className="inline-flex items-center rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
+            <div
+              className={cn(
+                'inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-4',
+                isDark
+                  ? 'border-white/20 bg-white/10 text-white/80'
+                  : 'border-border bg-card text-muted-foreground',
+              )}
+            >
               {badge}
             </div>
           )}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
+          <h2
+            className={cn(
+              'text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4',
+              isDark ? 'text-white' : 'text-foreground',
+            )}
+          >
             {title}
           </h2>
-          {description && <p className="text-lg text-muted-foreground">{description}</p>}
+          {description && (
+            <p className={cn('text-lg', isDark ? 'text-white/70' : 'text-muted-foreground')}>
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Features Grid */}
         <div className={cn('grid gap-6', gridCols[columns as keyof typeof gridCols])}>
           {features?.map((feature, index) => {
             const IconComponent = iconComponents[feature.icon] || iconComponents.code
+            // Alterner les variantes pour plus de dynamisme
+            const cardVariant = isDark ? 'dark' : index % 3 === 0 ? 'gradient' : 'default'
             return (
-              <GlowCard key={index} className="p-8">
+              <GlowCard key={index} className="p-8" variant={cardVariant}>
                 <div className="relative">
-                  {/* Icon */}
-                  <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    <IconComponent className="w-6 h-6" />
+                  {/* Icon avec gradient */}
+                  <div
+                    className={cn(
+                      'mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl transition-transform duration-300 group-hover:scale-110',
+                      isDark
+                        ? 'bg-gradient-to-br from-accent/30 to-accent/10 text-accent border border-accent/30'
+                        : 'bg-gradient-to-br from-accent/20 to-secondary/10 text-accent border border-accent/20',
+                    )}
+                  >
+                    <IconComponent className="w-7 h-7" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
+                  <h3
+                    className={cn(
+                      'text-xl font-semibold mb-3',
+                      isDark ? 'text-white' : 'text-foreground',
+                    )}
+                  >
+                    {feature.title}
+                  </h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground text-base leading-relaxed">
+                  <p
+                    className={cn(
+                      'text-base leading-relaxed',
+                      isDark ? 'text-white/70' : 'text-muted-foreground',
+                    )}
+                  >
                     {feature.description}
                   </p>
                 </div>

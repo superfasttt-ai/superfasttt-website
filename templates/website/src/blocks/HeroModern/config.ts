@@ -88,6 +88,31 @@ export const HeroModern: Block = {
       ],
     },
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Image de fond (optionnel)',
+      admin: {
+        description: 'Image de fond avec overlay sombre. Recommandé: 1920x1080 minimum.',
+      },
+    },
+    {
+      name: 'backgroundImageOpacity',
+      type: 'select',
+      label: "Opacité de l'image de fond",
+      defaultValue: '20',
+      options: [
+        { label: '10%', value: '10' },
+        { label: '20%', value: '20' },
+        { label: '30%', value: '30' },
+        { label: '40%', value: '40' },
+        { label: '50%', value: '50' },
+      ],
+      admin: {
+        description: 'Visible uniquement si une image de fond est définie',
+      },
+    },
+    {
       name: 'showGridPattern',
       type: 'checkbox',
       defaultValue: true,

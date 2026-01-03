@@ -214,6 +214,7 @@ export interface Page {
     | MediaBlock
     | ArchiveBlock
     | FormBlock
+    | FAQBlock
   )[];
   meta?: {
     title?: string | null;
@@ -520,6 +521,14 @@ export interface HeroModernBlock {
         }[]
       | null;
   };
+  /**
+   * Image de fond avec overlay sombre. Recommandé: 1920x1080 minimum.
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
+   * Visible uniquement si une image de fond est définie
+   */
+  backgroundImageOpacity?: ('10' | '20' | '30' | '40' | '50') | null;
   showGridPattern?: boolean | null;
   showGradientOrbs?: boolean | null;
   /**
@@ -1099,6 +1108,41 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  badge?: string | null;
+  title?: string | null;
+  description?: string | null;
+  items: {
+    question: string;
+    answer: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    id?: string | null;
+  }[];
+  /**
+   * Si activé, plusieurs questions peuvent être ouvertes simultanément
+   */
+  allowMultipleOpen?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1413,6 +1457,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        faq?: T | FAQBlockSelect<T>;
       };
   meta?:
     | T
@@ -1477,6 +1522,8 @@ export interface HeroModernBlockSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  backgroundImage?: T;
+  backgroundImageOpacity?: T;
   showGridPattern?: T;
   showGradientOrbs?: T;
   showFoundationVisual?: T;
@@ -1717,6 +1764,25 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  allowMultipleOpen?: T;
   id?: T;
   blockName?: T;
 }

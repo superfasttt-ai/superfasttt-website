@@ -3,8 +3,9 @@
 import React from 'react'
 import { CMSLink } from '@/components/Link'
 import { FoundationVisual } from './FoundationVisual'
+import { cn } from '@/utilities/ui'
 
-import type { HeroModernBlock as HeroModernBlockProps } from '@/payload-types'
+import type { HeroModernBlock as HeroModernBlockProps, Media } from '@/payload-types'
 
 const trustIcons: Record<string, React.FC<{ className?: string }>> = {
   shield: ({ className }) => (
@@ -64,34 +65,61 @@ const trustIcons: Record<string, React.FC<{ className?: string }>> = {
   ),
 }
 
-export const HeroModernBlock: React.FC<HeroModernBlockProps> = ({
+type HeroVariant = 'light' | 'dark'
+
+interface HeroModernBlockComponentProps extends HeroModernBlockProps {
+  variant?: HeroVariant
+}
+
+export const HeroModernBlock: React.FC<HeroModernBlockComponentProps> = ({
   badge,
   title,
   highlightedText,
   description,
   links,
   trustIndicators,
+  backgroundImage,
+  backgroundImageOpacity = '20',
   showGridPattern = true,
   showGradientOrbs = true,
   showFoundationVisual = false,
+  variant = 'light',
 }) => {
+  const bgImage = backgroundImage as Media | null
+  const hasBackgroundImage = bgImage?.url
+  // Force dark text style when background image is present
+  const isDark = hasBackgroundImage || variant === 'dark'
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Grid pattern Vercel style */}
-      {showGridPattern && (
-        <div
-          className="absolute inset-0 dark:opacity-100 opacity-50"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
-            backgroundSize: '64px 64px',
-          }}
-        />
+    <section
+      className={cn(
+        'relative min-h-screen flex items-center justify-center overflow-hidden',
+        hasBackgroundImage ? 'bg-primary' : isDark ? 'bg-primary' : 'bg-background',
       )}
+    >
+      {/* Background Image */}
+      {hasBackgroundImage && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${bgImage.url})`,
+              opacity: Number(backgroundImageOpacity) / 100,
+            }}
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/80" />
+        </>
+      )}
+
+      {/* Grid pattern */}
       {showGridPattern && (
         <div
-          className="absolute inset-0 hidden dark:block"
+          className="absolute inset-0 opacity-50"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+            backgroundImage: isDark
+              ? `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`
+              : `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
             backgroundSize: '64px 64px',
           }}
         />
@@ -100,13 +128,32 @@ export const HeroModernBlock: React.FC<HeroModernBlockProps> = ({
       {/* Gradient orbs - Vercel/Supabase style */}
       {showGradientOrbs && (
         <>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-blue-500/10 dark:from-emerald-500/20 dark:via-cyan-500/20 dark:to-blue-500/20 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-purple-500/5 to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/10 rounded-full blur-[100px]" />
+          <div
+            className={cn(
+              'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px]',
+              isDark
+                ? 'bg-gradient-to-r from-accent/30 via-secondary/20 to-accent/10'
+                : 'bg-gradient-to-r from-accent/10 via-secondary/10 to-primary/10',
+            )}
+          />
+          <div
+            className={cn(
+              'absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full blur-[100px]',
+              isDark
+                ? 'bg-gradient-to-r from-accent/20 to-secondary/10'
+                : 'bg-gradient-to-r from-secondary/5 to-primary/5',
+            )}
+          />
         </>
       )}
 
       {/* Radial fade overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/50" />
+      <div
+        className={cn(
+          'absolute inset-0 bg-gradient-to-b from-transparent via-transparent',
+          isDark ? 'to-primary/50' : 'to-background/50',
+        )}
+      />
 
       {/* Foundation Visual - socle rectangulaire */}
       {showFoundationVisual && (
@@ -119,19 +166,38 @@ export const HeroModernBlock: React.FC<HeroModernBlockProps> = ({
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
           {/* Badge */}
           {badge && (
-            <div className="inline-flex items-center rounded-full border border-border bg-card backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-muted-foreground">
-              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <div
+              className={cn(
+                'inline-flex items-center rounded-full border backdrop-blur-sm px-4 py-1.5 text-sm font-medium',
+                isDark
+                  ? 'border-white/20 bg-white/10 text-white/80'
+                  : 'border-border bg-card text-muted-foreground',
+              )}
+            >
+              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-accent" />
               {badge}
             </div>
           )}
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
+          <h1
+            className={cn(
+              'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight',
+              isDark ? 'text-white' : 'text-foreground',
+            )}
+          >
             {title}
             {highlightedText && (
               <>
                 <br />
-                <span className="bg-gradient-to-r from-emerald-600 via-cyan-500 to-blue-500 dark:from-emerald-400 dark:via-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                <span
+                  className={cn(
+                    'bg-clip-text text-transparent',
+                    isDark
+                      ? 'bg-gradient-to-r from-accent via-accent/80 to-white'
+                      : 'bg-gradient-to-r from-accent via-secondary to-primary',
+                  )}
+                >
                   {highlightedText}
                 </span>
               </>
@@ -139,22 +205,32 @@ export const HeroModernBlock: React.FC<HeroModernBlockProps> = ({
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+          <p
+            className={cn(
+              'text-lg md:text-xl max-w-2xl leading-relaxed',
+              isDark ? 'text-white/70' : 'text-muted-foreground',
+            )}
+          >
             {description}
           </p>
 
-          {/* CTA Buttons - Vercel style */}
+          {/* CTA Buttons */}
           {Array.isArray(links) && links.length > 0 && (
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               {links.map(({ link }, i) => (
                 <CMSLink
                   key={i}
                   {...link}
-                  className={
+                  className={cn(
+                    'inline-flex items-center justify-center h-12 px-6 rounded-lg font-medium transition-colors',
                     link.appearance === 'default'
-                      ? 'inline-flex items-center justify-center h-12 px-6 rounded-lg bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors'
-                      : 'inline-flex items-center justify-center h-12 px-6 rounded-lg border border-border bg-card text-foreground font-medium hover:bg-card/80 transition-colors'
-                  }
+                      ? isDark
+                        ? 'bg-accent text-white hover:bg-accent/90'
+                        : 'bg-foreground text-background hover:bg-foreground/90'
+                      : isDark
+                        ? 'border border-white/20 bg-white/10 text-white hover:bg-white/20'
+                        : 'border border-border bg-card text-foreground hover:bg-card/80',
+                  )}
                 />
               ))}
             </div>
@@ -166,10 +242,17 @@ export const HeroModernBlock: React.FC<HeroModernBlockProps> = ({
               (trustIndicators.indicators && trustIndicators.indicators.length > 0)) && (
               <div className="pt-16 flex flex-col items-center gap-4">
                 {trustIndicators.headline && (
-                  <p className="text-sm text-muted-foreground">{trustIndicators.headline}</p>
+                  <p className={cn('text-sm', isDark ? 'text-white/60' : 'text-muted-foreground')}>
+                    {trustIndicators.headline}
+                  </p>
                 )}
                 {trustIndicators.indicators && trustIndicators.indicators.length > 0 && (
-                  <div className="flex items-center gap-8 text-muted-foreground">
+                  <div
+                    className={cn(
+                      'flex items-center gap-8',
+                      isDark ? 'text-white/60' : 'text-muted-foreground',
+                    )}
+                  >
                     {trustIndicators.indicators.map((indicator, index) => {
                       const IconComponent = indicator.icon ? trustIcons[indicator.icon] : null
                       return (

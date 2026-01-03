@@ -13,9 +13,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-sante',
     type: 'industry',
     slug: {
-      fr: 'sante',
-      en: 'healthcare',
-      es: 'salud',
+      fr: 'solutions/sante',
+      en: 'solutions/healthcare',
+      es: 'soluciones/salud',
     },
     title: {
       fr: 'Santé & Médical',
@@ -34,7 +34,7 @@ export const industries: IndustryTaxonomy[] = [
     },
     icon: 'heart',
     priority: 'high',
-    batch: 1,
+    batch: 0,
     challenges: [
       'Protection des données de santé',
       'Conformité HDS obligatoire',
@@ -52,9 +52,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-finance',
     type: 'industry',
     slug: {
-      fr: 'finance-banque',
-      en: 'finance-banking',
-      es: 'finanzas-banca',
+      fr: 'solutions/finance',
+      en: 'solutions/finance',
+      es: 'soluciones/finanzas',
     },
     title: {
       fr: 'Finance & Banque',
@@ -73,7 +73,7 @@ export const industries: IndustryTaxonomy[] = [
     },
     icon: 'credit-card',
     priority: 'high',
-    batch: 1,
+    batch: 0,
     challenges: [
       'Réglementation stricte ACPR',
       'Données clients ultra-sensibles',
@@ -91,9 +91,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-assurance',
     type: 'industry',
     slug: {
-      fr: 'assurance',
-      en: 'insurance',
-      es: 'seguros',
+      fr: 'solutions/assurance',
+      en: 'solutions/insurance',
+      es: 'soluciones/seguros',
     },
     title: {
       fr: 'Assurance',
@@ -130,9 +130,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-industrie',
     type: 'industry',
     slug: {
-      fr: 'industrie-manufacturing',
-      en: 'industry-manufacturing',
-      es: 'industria-manufactura',
+      fr: 'solutions/industrie',
+      en: 'solutions/manufacturing',
+      es: 'soluciones/industria',
     },
     title: {
       fr: 'Industrie & Manufacturing',
@@ -151,7 +151,7 @@ export const industries: IndustryTaxonomy[] = [
     },
     icon: 'tool',
     priority: 'high',
-    batch: 1,
+    batch: 0,
     challenges: [
       'Documentation technique volumineuse',
       'Maintenance des équipements',
@@ -169,9 +169,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-retail',
     type: 'industry',
     slug: {
-      fr: 'retail-ecommerce',
-      en: 'retail-ecommerce',
-      es: 'retail-ecommerce',
+      fr: 'solutions/retail',
+      en: 'solutions/retail',
+      es: 'soluciones/retail',
     },
     title: {
       fr: 'Retail & E-commerce',
@@ -208,9 +208,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-secteur-public',
     type: 'industry',
     slug: {
-      fr: 'secteur-public',
-      en: 'public-sector',
-      es: 'sector-publico',
+      fr: 'solutions/administration',
+      en: 'solutions/public-sector',
+      es: 'soluciones/administracion',
     },
     title: {
       fr: 'Services Publics & Collectivités',
@@ -229,7 +229,7 @@ export const industries: IndustryTaxonomy[] = [
     },
     icon: 'building',
     priority: 'high',
-    batch: 1,
+    batch: 0,
     challenges: [
       'Souveraineté des données obligatoire',
       'Conformité SecNumCloud',
@@ -247,9 +247,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-energie',
     type: 'industry',
     slug: {
-      fr: 'energie-utilities',
-      en: 'energy-utilities',
-      es: 'energia-utilities',
+      fr: 'solutions/energie',
+      en: 'solutions/energy',
+      es: 'soluciones/energia',
     },
     title: {
       fr: 'Énergie & Utilities',
@@ -286,9 +286,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-immobilier',
     type: 'industry',
     slug: {
-      fr: 'immobilier-construction',
-      en: 'real-estate-construction',
-      es: 'inmobiliario-construccion',
+      fr: 'solutions/immobilier',
+      en: 'solutions/real-estate',
+      es: 'soluciones/inmobiliario',
     },
     title: {
       fr: 'Immobilier & Construction',
@@ -325,9 +325,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-transport',
     type: 'industry',
     slug: {
-      fr: 'transport-logistique',
-      en: 'transport-logistics',
-      es: 'transporte-logistica',
+      fr: 'solutions/transport',
+      en: 'solutions/transport',
+      es: 'soluciones/transporte',
     },
     title: {
       fr: 'Transport & Logistique',
@@ -364,9 +364,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-education',
     type: 'industry',
     slug: {
-      fr: 'education-formation',
-      en: 'education-training',
-      es: 'educacion-formacion',
+      fr: 'solutions/education',
+      en: 'solutions/education',
+      es: 'soluciones/educacion',
     },
     title: {
       fr: 'Éducation & Formation',
@@ -403,9 +403,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-juridique',
     type: 'industry',
     slug: {
-      fr: 'juridique-cabinets',
-      en: 'legal-law-firms',
-      es: 'juridico-despachos',
+      fr: 'solutions/juridique',
+      en: 'solutions/legal',
+      es: 'soluciones/juridico',
     },
     title: {
       fr: 'Juridique & Cabinets',
@@ -424,7 +424,7 @@ export const industries: IndustryTaxonomy[] = [
     },
     icon: 'file-text',
     priority: 'high',
-    batch: 1,
+    batch: 0,
     challenges: [
       'Confidentialité absolue',
       'Volume de documents',
@@ -442,9 +442,9 @@ export const industries: IndustryTaxonomy[] = [
     id: 'industry-conseil',
     type: 'industry',
     slug: {
-      fr: 'conseil-services-professionnels',
-      en: 'consulting-professional-services',
-      es: 'consultoria-servicios-profesionales',
+      fr: 'solutions/conseil',
+      en: 'solutions/consulting',
+      es: 'soluciones/consultoria',
     },
     title: {
       fr: 'Conseil & Services Professionnels',
@@ -472,6 +472,45 @@ export const industries: IndustryTaxonomy[] = [
     ],
     regulations: ['RGPD', 'Confidentialité client'],
     certifications: ['ISO 27001', 'ISO 9001'],
+  },
+
+  // ============================================================================
+  // ETI & GRANDES ENTREPRISES
+  // ============================================================================
+  {
+    id: 'industry-enterprise',
+    type: 'industry',
+    slug: {
+      fr: 'solutions/entreprises',
+      en: 'solutions/enterprise',
+      es: 'soluciones/empresas',
+    },
+    title: {
+      fr: 'ETI & Grandes Entreprises',
+      en: 'Mid-size & Large Enterprises',
+      es: 'PYMES y Grandes Empresas',
+    },
+    description: {
+      fr: 'IA pour les ETI et grandes entreprises. Scalabilité, gouvernance multi-entités, intégration SI complexe, support dédié.',
+      en: 'AI for mid-size and large enterprises. Scalability, multi-entity governance, complex SI integration, dedicated support.',
+      es: 'IA para PYMES y grandes empresas. Escalabilidad, gobernanza multi-entidad, integración SI compleja, soporte dedicado.',
+    },
+    seoKeywords: {
+      fr: 'IA entreprise, IA ETI, grands comptes IA, plateforme IA entreprise',
+      en: 'enterprise AI, mid-size AI, large accounts AI, enterprise AI platform',
+      es: 'IA empresarial, IA PYME, grandes cuentas IA, plataforma IA empresarial',
+    },
+    icon: 'building-2',
+    priority: 'high',
+    batch: 0,
+    challenges: [
+      'Gouvernance multi-entités',
+      'Intégration SI complexe',
+      'Scalabilité à grande échelle',
+      'Conformité multi-réglementations',
+    ],
+    regulations: ['RGPD', 'NIS2', 'Réglementations sectorielles'],
+    certifications: ['ISO 27001', 'SOC 2', 'ISO 9001'],
   },
 ]
 

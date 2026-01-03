@@ -1,11 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
 import { CMSLink } from '@/components/Link'
 import { cn } from '@/utilities/ui'
 import { GlowCard } from '@/components/GlowCard'
 import { ANIMATIONS, type AnimationId } from '@/components/animations/registry'
+import { AnimationSkeleton } from '@/components/animations/AnimationSkeleton'
 
 import type { ProductShowcaseBlock as ProductShowcaseBlockProps, Media } from '@/payload-types'
 
@@ -191,12 +192,19 @@ const iconComponents: Record<string, React.FC<{ className?: string }>> = {
 
 type ShowcaseItem = NonNullable<ProductShowcaseBlockProps['items']>[0]
 
-export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
+type BackgroundStyle = 'white' | 'muted'
+
+interface ProductShowcaseBlockComponentProps extends ProductShowcaseBlockProps {
+  backgroundStyle?: BackgroundStyle
+}
+
+export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockComponentProps> = ({
   badge,
   title,
   description,
   items,
   layout = 'grid',
+  backgroundStyle = 'white',
 }) => {
   const renderCard = (item: ShowcaseItem, index: number, isLarge = false) => {
     const image = item.image as Media | undefined
@@ -220,7 +228,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
           ) : IconComponent ? (
             <div
               className={cn(
-                'mb-6 inline-flex items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
+                'mb-6 inline-flex items-center justify-center rounded-lg bg-accent/10 text-accent border border-accent/20',
                 isLarge ? 'w-14 h-14' : 'w-12 h-12',
               )}
             >
@@ -254,7 +262,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
                   className="flex items-center gap-2 text-sm text-muted-foreground"
                 >
                   <svg
-                    className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0"
+                    className="w-4 h-4 text-accent flex-shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -278,7 +286,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
                 <CMSLink
                   key={linkIndex}
                   {...link}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 transition-colors group/link"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors group/link"
                 >
                   <span className="group-hover/link:underline">{link.label}</span>
                   <svg
@@ -322,7 +330,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
             >
               <div>
                 {IconComponent && (
-                  <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                  <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 text-accent">
                     <IconComponent className="w-7 h-7" />
                   </div>
                 )}
@@ -343,7 +351,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
                         className="flex items-center gap-3 text-muted-foreground"
                       >
                         <svg
-                          className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0"
+                          className="w-5 h-5 text-accent flex-shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -367,7 +375,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
                       <CMSLink
                         key={linkIndex}
                         {...link}
-                        className="inline-flex items-center gap-2 font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 transition-colors group/link"
+                        className="inline-flex items-center gap-2 font-medium text-accent hover:text-accent/80 transition-colors group/link"
                       >
                         <span className="group-hover/link:underline">{link.label}</span>
                         <svg
@@ -406,7 +414,9 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
                     const AnimationComponent = ANIMATIONS[animationId]
                     return (
                       <div className="relative rounded-2xl border border-border bg-card/50 aspect-video overflow-hidden">
-                        <AnimationComponent className="w-full h-full" />
+                        <Suspense fallback={<AnimationSkeleton className="w-full h-full" />}>
+                          <AnimationComponent className="w-full h-full" />
+                        </Suspense>
                       </div>
                     )
                   })()
@@ -426,7 +436,7 @@ export const ProductShowcaseBlock: React.FC<ProductShowcaseBlockProps> = ({
   }
 
   return (
-    <section className="py-24 bg-background">
+    <section className={cn('py-24', backgroundStyle === 'muted' ? 'bg-muted/50' : 'bg-background')}>
       <div className="container px-4 md:px-6">
         {(badge || title || description) && (
           <div className="text-center max-w-3xl mx-auto mb-16">

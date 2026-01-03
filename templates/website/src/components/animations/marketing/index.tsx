@@ -19,17 +19,17 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
         <defs>
           {/* Gradients */}
           <linearGradient id="mkt-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor="#ec4899" />
+            <stop offset="0%" stopColor="#14B8A6" />
+            <stop offset="100%" stopColor="#22C55E" />
           </linearGradient>
           <linearGradient id="mkt-gradient-2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f59e0b" />
-            <stop offset="100%" stopColor="#ef4444" />
+            <stop offset="0%" stopColor="#F59E0B" />
+            <stop offset="100%" stopColor="#EF4444" />
           </linearGradient>
           <linearGradient id="mkt-flow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0" />
-            <stop offset="50%" stopColor="#ec4899" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0" />
+            <stop offset="50%" stopColor="#14B8A6" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
           </linearGradient>
 
           <filter id="mkt-glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -58,7 +58,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               y1="40"
               x2={60 + i * 48}
               y2="320"
-              stroke="#8b5cf6"
+              stroke="#14B8A6"
               strokeWidth="0.5"
             />
           ))}
@@ -69,7 +69,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               y1={60 + i * 48}
               x2="540"
               y2={60 + i * 48}
-              stroke="#8b5cf6"
+              stroke="#14B8A6"
               strokeWidth="0.5"
             />
           ))}
@@ -372,7 +372,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               cy="0"
               r="20"
               fill="none"
-              stroke="#8b5cf6"
+              stroke="#14B8A6"
               strokeWidth="1"
               strokeDasharray="8 4"
               opacity="0.7"
@@ -385,7 +385,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
                 repeatCount="indefinite"
               />
             </circle>
-            <circle cx="0" cy="0" r="8" fill="#8b5cf6" opacity="0.5">
+            <circle cx="0" cy="0" r="8" fill="#14B8A6" opacity="0.5">
               <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite" />
             </circle>
           </g>
@@ -396,7 +396,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               cy="0"
               r="15"
               fill="none"
-              stroke="#ec4899"
+              stroke="#14B8A6"
               strokeWidth="1"
               strokeDasharray="6 3"
               opacity="0.7"
@@ -409,7 +409,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
                 repeatCount="indefinite"
               />
             </circle>
-            <circle cx="0" cy="0" r="6" fill="#ec4899" opacity="0.5">
+            <circle cx="0" cy="0" r="6" fill="#14B8A6" opacity="0.5">
               <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite" />
             </circle>
           </g>
@@ -420,7 +420,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               cy="0"
               r="12"
               fill="none"
-              stroke="#f59e0b"
+              stroke="#F59E0B"
               strokeWidth="1"
               strokeDasharray="4 2"
               opacity="0.6"
@@ -459,7 +459,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
           </g>
 
           {/* Label */}
-          <text x="250" y="225" textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="600">
+          <text x="250" y="225" textAnchor="middle" fill="#14B8A6" fontSize="12" fontWeight="600">
             AI CONTENT
           </text>
         </g>
@@ -469,7 +469,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
           {/* Canal 1 - vers Post */}
           <path
             d="M330 150 Q380 150 400 120"
-            stroke="#3b82f6"
+            stroke="#14B8A6"
             strokeWidth="1.5"
             fill="none"
             opacity="0.7"
@@ -481,7 +481,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               repeatCount="indefinite"
             />
           </path>
-          <circle r="4" fill="#3b82f6">
+          <circle r="4" fill="#14B8A6">
             <animateMotion path="M330 150 Q380 150 400 120" dur="1.5s" repeatCount="indefinite" />
           </circle>
 
@@ -493,7 +493,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
             fill="none"
             opacity="0.7"
           />
-          <circle r="4" fill="#10b981">
+          <circle r="4" fill="#22C55E">
             <animateMotion
               path="M330 180 L420 180"
               dur="1.2s"
@@ -510,7 +510,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
             fill="none"
             opacity="0.7"
           />
-          <circle r="4" fill="#f59e0b">
+          <circle r="4" fill="#F59E0B">
             <animateMotion
               path="M330 210 Q380 210 400 250"
               dur="1.5s"
@@ -531,7 +531,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               height="75"
               rx="10"
               fill="#1e293b"
-              stroke="#3b82f6"
+              stroke="#14B8A6"
               strokeWidth="1"
             >
               <animate
@@ -542,8 +542,8 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               />
             </rect>
             {/* Header image */}
-            <rect x="430" y="90" width="110" height="30" rx="4" fill="#3b82f6" opacity="0.3" />
-            <polygon points="460,100 470,115 450,115" fill="#3b82f6" opacity="0.6" />
+            <rect x="430" y="90" width="110" height="30" rx="4" fill="#14B8A6" opacity="0.3" />
+            <polygon points="460,100 470,115 450,115" fill="#14B8A6" opacity="0.6" />
             {/* Lignes de texte */}
             <line
               x1="430"
@@ -564,7 +564,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               opacity="0.3"
             />
             {/* Badge */}
-            <rect x="500" y="85" width="45" height="16" rx="8" fill="#3b82f6" opacity="0.8" />
+            <rect x="500" y="85" width="45" height="16" rx="8" fill="#14B8A6" opacity="0.8" />
             <text x="522" y="96" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">
               POST
             </text>
@@ -579,7 +579,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               height="85"
               rx="10"
               fill="#1e293b"
-              stroke="#10b981"
+              stroke="#22C55E"
               strokeWidth="1"
             >
               <animate
@@ -591,12 +591,12 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               />
             </rect>
             {/* Image placeholder avec montagne/soleil */}
-            <rect x="440" y="175" width="100" height="50" rx="4" fill="#10b981" opacity="0.2" />
+            <rect x="440" y="175" width="100" height="50" rx="4" fill="#22C55E" opacity="0.2" />
             <circle cx="465" cy="190" r="10" fill="#fbbf24" opacity="0.6" />
-            <polygon points="480,220 510,190 530,220" fill="#10b981" opacity="0.5" />
-            <polygon points="455,220 475,200 495,220" fill="#10b981" opacity="0.7" />
+            <polygon points="480,220 510,190 530,220" fill="#22C55E" opacity="0.5" />
+            <polygon points="455,220 475,200 495,220" fill="#22C55E" opacity="0.7" />
             {/* Badge */}
-            <rect x="495" y="230" width="50" height="16" rx="8" fill="#10b981" opacity="0.8" />
+            <rect x="495" y="230" width="50" height="16" rx="8" fill="#22C55E" opacity="0.8" />
             <text x="520" y="241" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">
               VISUAL
             </text>
@@ -611,7 +611,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               height="80"
               rx="10"
               fill="#1e293b"
-              stroke="#f59e0b"
+              stroke="#F59E0B"
               strokeWidth="1"
             >
               <animate
@@ -623,17 +623,17 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               />
             </rect>
             {/* Video frame */}
-            <rect x="425" y="270" width="120" height="50" rx="4" fill="#f59e0b" opacity="0.15" />
+            <rect x="425" y="270" width="120" height="50" rx="4" fill="#F59E0B" opacity="0.15" />
             {/* Play button */}
-            <circle cx="485" cy="295" r="15" fill="#f59e0b" opacity="0.3" />
+            <circle cx="485" cy="295" r="15" fill="#F59E0B" opacity="0.3" />
             <polygon points="480,288 480,302 495,295" fill="white" opacity="0.9" />
             {/* Progress bar */}
             <rect x="425" y="325" width="120" height="4" rx="2" fill="#374151" />
-            <rect x="425" y="325" width="50" height="4" rx="2" fill="#f59e0b" opacity="0.8">
+            <rect x="425" y="325" width="50" height="4" rx="2" fill="#F59E0B" opacity="0.8">
               <animate attributeName="width" values="20;80;20" dur="4s" repeatCount="indefinite" />
             </rect>
             {/* Badge */}
-            <rect x="500" y="265" width="50" height="16" rx="8" fill="#f59e0b" opacity="0.8" />
+            <rect x="500" y="265" width="50" height="16" rx="8" fill="#F59E0B" opacity="0.8" />
             <text x="525" y="276" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">
               VIDEO
             </text>
@@ -655,7 +655,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
 
         {/* Particules décoratives */}
         <g className="particles" opacity="0.5">
-          <circle cx="180" cy="100" r="2" fill="#8b5cf6">
+          <circle cx="180" cy="100" r="2" fill="#14B8A6">
             <animate attributeName="cy" values="100;90;100" dur="2s" repeatCount="indefinite" />
             <animate
               attributeName="opacity"
@@ -664,7 +664,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="320" cy="100" r="2" fill="#ec4899">
+          <circle cx="320" cy="100" r="2" fill="#14B8A6">
             <animate
               attributeName="cy"
               values="100;95;100"
@@ -680,7 +680,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="380" cy="140" r="1.5" fill="#f59e0b">
+          <circle cx="380" cy="140" r="1.5" fill="#F59E0B">
             <animate
               attributeName="cy"
               values="140;135;140"
@@ -689,7 +689,7 @@ export const Marketing: React.FC<MarketingProps> = ({ className = '' }) => {
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="350" cy="250" r="2" fill="#10b981">
+          <circle cx="350" cy="250" r="2" fill="#22C55E">
             <animate
               attributeName="cy"
               values="250;245;250"

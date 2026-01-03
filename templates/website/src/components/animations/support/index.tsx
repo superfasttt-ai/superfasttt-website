@@ -8,11 +8,11 @@ interface SupportProps {
 
 // Tickets de support entrants
 const TICKETS = [
-  { id: 'ticket1', x: 80, y: 80, color: '#3b82f6', delay: 0 },
-  { id: 'ticket2', x: 180, y: 80, color: '#8b5cf6', delay: 0.5 },
-  { id: 'ticket3', x: 280, y: 80, color: '#f59e0b', delay: 1.0 },
-  { id: 'ticket4', x: 380, y: 80, color: '#22c55e', delay: 1.5 },
-  { id: 'ticket5', x: 480, y: 80, color: '#ec4899', delay: 2.0 },
+  { id: 'ticket1', x: 80, y: 80, color: '#14B8A6', delay: 0 },
+  { id: 'ticket2', x: 180, y: 80, color: '#0d9488', delay: 0.5 },
+  { id: 'ticket3', x: 280, y: 80, color: '#F59E0B', delay: 1.0 },
+  { id: 'ticket4', x: 380, y: 80, color: '#22C55E', delay: 1.5 },
+  { id: 'ticket5', x: 480, y: 80, color: '#14B8A6', delay: 2.0 },
 ]
 
 // Hub central (IA économique)
@@ -195,7 +195,7 @@ export const Support: React.FC<SupportProps> = ({ className = '' }) => {
             cy={HUB.y}
             r="55"
             fill="none"
-            stroke="#22c55e"
+            stroke="#22C55E"
             strokeWidth="1"
             opacity="0"
           >
@@ -204,7 +204,7 @@ export const Support: React.FC<SupportProps> = ({ className = '' }) => {
           </circle>
 
           {/* Fond du hub */}
-          <circle cx={HUB.x} cy={HUB.y} r="50" fill="#1e293b" stroke="#22c55e" strokeWidth="2" />
+          <circle cx={HUB.x} cy={HUB.y} r="50" fill="#1e293b" stroke="#22C55E" strokeWidth="2" />
 
           {/* Icône casque/headset centré */}
           <g transform={`translate(${HUB.x}, ${HUB.y})`}>
@@ -255,7 +255,7 @@ export const Support: React.FC<SupportProps> = ({ className = '' }) => {
 
           {/* Badge coût optimisé */}
           <g transform={`translate(${HUB.x + 35}, ${HUB.y - 35})`}>
-            <circle r="14" fill="#22c55e" opacity="0.95">
+            <circle r="14" fill="#22C55E" opacity="0.95">
               <animate
                 attributeName="opacity"
                 values="0.8;1;0.8"
@@ -297,11 +297,11 @@ export const Support: React.FC<SupportProps> = ({ className = '' }) => {
                 begin={`${resp.delay}s`}
                 repeatCount="indefinite"
               />
-              <circle cx={resp.x} cy={resp.y} r="12" fill="#22c55e" opacity="0.3" />
+              <circle cx={resp.x} cy={resp.y} r="12" fill="#22C55E" opacity="0.3" />
               <path
                 d={`M${resp.x - 5} ${resp.y}L${resp.x - 1} ${resp.y + 4}L${resp.x + 6} ${resp.y - 4}`}
                 fill="none"
-                stroke="#22c55e"
+                stroke="#22C55E"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -207,6 +207,7 @@ export type PageBlock =
   | StatsSectionBlock
   | CtaModernBlock
   | ContentBlock
+  | FAQBlockType
 
 export interface HeroModernBlock {
   blockType: 'heroModern'
@@ -316,6 +317,21 @@ export interface ContentBlock {
 export interface ContentColumn {
   size: 'oneThird' | 'half' | 'twoThirds' | 'full'
   richText: any // Lexical content
+}
+
+export interface FAQBlockType {
+  blockType: 'faq'
+  blockName?: string
+  badge?: string
+  title?: string
+  description?: string
+  items: FAQItem[]
+  allowMultipleOpen?: boolean
+}
+
+export interface FAQItem {
+  question: string
+  answer: any // Lexical rich text content
 }
 
 // ============================================================================
@@ -428,6 +444,7 @@ export interface GenerationOptions {
   asDraft: boolean
   includeResearch: boolean
   generateImageBriefs: boolean
+  withFaq: boolean
 }
 
 export interface GenerationResult {

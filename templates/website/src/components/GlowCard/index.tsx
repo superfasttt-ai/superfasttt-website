@@ -1,58 +1,80 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { cn } from '@/utilities/ui'
 
 interface GlowCardProps {
   children: React.ReactNode
   className?: string
+  variant?: 'default' | 'dark' | 'gradient' | 'glass'
 }
 
-export const GlowCard: React.FC<GlowCardProps> = ({ children, className }) => {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [hasAnimated, setHasAnimated] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
+export const GlowCard: React.FC<GlowCardProps> = ({ children, className, variant = 'default' }) => {
+  const variants = {
+    // Card standard avec fond solid
+    default: [
+      'bg-card border border-border',
+      'hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10',
+      'hover:-translate-y-1',
+    ].join(' '),
 
-  useEffect(() => {
-    const card = cardRef.current
-    if (!card) return
+    // Card pour fond sombre (primary)
+    dark: [
+      'bg-gradient-to-br from-secondary/90 via-secondary/70 to-primary/80',
+      'border border-white/10 backdrop-blur-sm',
+      'hover:border-accent/40 hover:shadow-xl hover:shadow-accent/20',
+      'hover:-translate-y-1',
+    ].join(' '),
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setIsAnimating(true)
-            setHasAnimated(true)
-            // Arrêter l'animation après un tour complet (3s)
-            setTimeout(() => {
-              setIsAnimating(false)
-            }, 3000)
-          }
-        })
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '0px',
-      },
-    )
+    // Card avec gradient subtil accent
+    gradient: [
+      'bg-gradient-to-br from-card via-card to-accent/5',
+      'border border-border',
+      'hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10',
+      'hover:to-accent/10',
+      'hover:-translate-y-1',
+    ].join(' '),
 
-    observer.observe(card)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [hasAnimated])
+    // Card effet verre
+    glass: [
+      'bg-white/80 backdrop-blur-md',
+      'border border-white/20',
+      'shadow-lg shadow-black/5',
+      'hover:bg-white/90 hover:shadow-xl hover:shadow-accent/10',
+      'hover:-translate-y-1',
+    ].join(' '),
+  }
 
   return (
     <div
-      ref={cardRef}
       className={cn(
-        'glow-card group relative rounded-xl border border-border bg-card transition-all duration-300',
-        isAnimating && 'glow-card--animating',
+        'group relative rounded-2xl transition-all duration-300 ease-out overflow-hidden',
+        variants[variant],
         className,
       )}
     >
-      {children}
+      {/* Gradient overlay subtil au hover */}
+      <div
+        className={cn(
+          'absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none',
+          'group-hover:opacity-100',
+          variant === 'dark'
+            ? 'bg-gradient-to-br from-accent/10 via-transparent to-transparent'
+            : 'bg-gradient-to-br from-accent/5 via-transparent to-secondary/5',
+        )}
+      />
+
+      {/* Ligne de lumière en haut */}
+      <div
+        className={cn(
+          'absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px',
+          'bg-gradient-to-r from-transparent via-accent/50 to-transparent',
+          'opacity-0 group-hover:opacity-100 transition-opacity duration-500',
+        )}
+      />
+
+      {/* Contenu */}
+      <div className="relative z-10">{children}</div>
     </div>
   )
 }

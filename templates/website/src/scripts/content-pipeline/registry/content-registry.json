@@ -1,21 +1,43 @@
 {
   "metadata": {
-    "lastUpdated": "2025-12-23T13:41:47.994Z",
-    "totalPages": 50,
-    "generated": 2,
-    "pending": 148,
+    "lastUpdated": "2025-12-25T17:18:03.345Z",
+    "totalPages": 26,
+    "generated": 10,
+    "pending": 68,
     "reviewed": 0,
     "published": 0,
     "errors": 0
   },
   "pages": [
     {
+      "id": "service-overview",
+      "type": "service",
+      "slug": {
+        "fr": "produit/vue-ensemble",
+        "en": "product/overview",
+        "es": "producto/resumen"
+      },
+      "title": {
+        "fr": "Vue d'ensemble",
+        "en": "Product Overview",
+        "es": "Visión General"
+      },
+      "status": {
+        "fr": "generated",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:40:16.419Z"
+    },
+    {
       "id": "service-rag",
       "type": "service",
       "slug": {
-        "fr": "rag-base-connaissances",
-        "en": "rag-knowledge-base",
-        "es": "rag-base-conocimientos"
+        "fr": "produit/rag",
+        "en": "product/rag",
+        "es": "producto/rag"
       },
       "title": {
         "fr": "RAG & Base de Connaissances",
@@ -28,248 +50,16 @@
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1,
-      "generatedAt": "2025-12-23T13:40:55.642Z"
-    },
-    {
-      "id": "service-rag-multimodal",
-      "type": "service",
-      "slug": {
-        "fr": "rag-multimodal",
-        "en": "multimodal-rag",
-        "es": "rag-multimodal"
-      },
-      "title": {
-        "fr": "RAG Multimodal",
-        "en": "Multimodal RAG",
-        "es": "RAG Multimodal"
-      },
-      "status": {
-        "fr": "generated",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1,
-      "generatedAt": "2025-12-23T13:41:47.993Z"
-    },
-    {
-      "id": "service-recherche-semantique",
-      "type": "service",
-      "slug": {
-        "fr": "recherche-semantique",
-        "en": "semantic-search",
-        "es": "busqueda-semantica"
-      },
-      "title": {
-        "fr": "Recherche Sémantique",
-        "en": "Semantic Search",
-        "es": "Búsqueda Semántica"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "service-orchestration",
-      "type": "service",
-      "slug": {
-        "fr": "orchestration-modeles",
-        "en": "model-orchestration",
-        "es": "orquestacion-modelos"
-      },
-      "title": {
-        "fr": "Orchestration Multi-Modèles",
-        "en": "Multi-Model Orchestration",
-        "es": "Orquestación Multi-Modelos"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-multi-providers",
-      "type": "service",
-      "slug": {
-        "fr": "multi-fournisseurs-llm",
-        "en": "multi-llm-providers",
-        "es": "multi-proveedores-llm"
-      },
-      "title": {
-        "fr": "Multi-Fournisseurs LLM",
-        "en": "Multi-LLM Providers",
-        "es": "Multi-Proveedores LLM"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-routage-intelligent",
-      "type": "service",
-      "slug": {
-        "fr": "routage-intelligent",
-        "en": "intelligent-routing",
-        "es": "enrutamiento-inteligente"
-      },
-      "title": {
-        "fr": "Routage Intelligent",
-        "en": "Intelligent Routing",
-        "es": "Enrutamiento Inteligente"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "service-gouvernance",
-      "type": "service",
-      "slug": {
-        "fr": "gouvernance-ia",
-        "en": "ai-governance",
-        "es": "gobernanza-ia"
-      },
-      "title": {
-        "fr": "Gouvernance IA",
-        "en": "AI Governance",
-        "es": "Gobernanza IA"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-suivi-couts",
-      "type": "service",
-      "slug": {
-        "fr": "suivi-couts-ia",
-        "en": "ai-cost-tracking",
-        "es": "seguimiento-costos-ia"
-      },
-      "title": {
-        "fr": "Suivi des Coûts IA",
-        "en": "AI Cost Tracking",
-        "es": "Seguimiento de Costos IA"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-audit-trail",
-      "type": "service",
-      "slug": {
-        "fr": "audit-trail-ia",
-        "en": "ai-audit-trail",
-        "es": "audit-trail-ia"
-      },
-      "title": {
-        "fr": "Audit Trail IA",
-        "en": "AI Audit Trail",
-        "es": "Audit Trail IA"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-contexte-entreprise",
-      "type": "service",
-      "slug": {
-        "fr": "contexte-entreprise",
-        "en": "enterprise-context",
-        "es": "contexto-empresarial"
-      },
-      "title": {
-        "fr": "Contexte Entreprise",
-        "en": "Enterprise Context",
-        "es": "Contexto Empresarial"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-glossaire-metier",
-      "type": "service",
-      "slug": {
-        "fr": "glossaire-metier",
-        "en": "business-glossary",
-        "es": "glosario-empresarial"
-      },
-      "title": {
-        "fr": "Glossaire Métier",
-        "en": "Business Glossary",
-        "es": "Glosario Empresarial"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "service-memoire-utilisateur",
-      "type": "service",
-      "slug": {
-        "fr": "memoire-utilisateur",
-        "en": "user-memory",
-        "es": "memoria-usuario"
-      },
-      "title": {
-        "fr": "Mémoire Utilisateur",
-        "en": "User Memory",
-        "es": "Memoria de Usuario"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
+      "batch": 0,
+      "generatedAt": "2025-12-24T15:59:12.337Z"
     },
     {
       "id": "service-agents-ia",
       "type": "service",
       "slug": {
-        "fr": "agents-ia-metiers",
-        "en": "business-ai-agents",
-        "es": "agentes-ia-empresariales"
+        "fr": "produit/agents-ia",
+        "en": "product/ai-agents",
+        "es": "producto/agentes-ia"
       },
       "title": {
         "fr": "Agents IA Métiers",
@@ -277,41 +67,21 @@
         "es": "Agentes IA Empresariales"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "service-integrations",
-      "type": "service",
-      "slug": {
-        "fr": "integrations-connecteurs",
-        "en": "integrations-connectors",
-        "es": "integraciones-conectores"
-      },
-      "title": {
-        "fr": "Intégrations & Connecteurs",
-        "en": "Integrations & Connectors",
-        "es": "Integraciones y Conectores"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
+      "batch": 0,
+      "generatedAt": "2025-12-24T16:00:07.583Z"
     },
     {
       "id": "service-apps-tierces",
       "type": "service",
       "slug": {
-        "fr": "apps-tierces-marketplace",
-        "en": "third-party-apps-marketplace",
-        "es": "apps-terceros-marketplace"
+        "fr": "produit/apps",
+        "en": "product/apps",
+        "es": "producto/apps"
       },
       "title": {
         "fr": "Apps Tierces & Marketplace",
@@ -319,20 +89,43 @@
         "es": "Apps de Terceros y Marketplace"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:49:06.262Z"
+    },
+    {
+      "id": "service-integrations",
+      "type": "service",
+      "slug": {
+        "fr": "produit/integrations",
+        "en": "product/integrations",
+        "es": "producto/integraciones"
+      },
+      "title": {
+        "fr": "Intégrations & Connecteurs",
+        "en": "Integrations & Connectors",
+        "es": "Integraciones y Conectores"
+      },
+      "status": {
+        "fr": "generated",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:50:10.609Z"
     },
     {
       "id": "service-deploiement",
       "type": "service",
       "slug": {
-        "fr": "deploiement-souverainete",
-        "en": "deployment-sovereignty",
-        "es": "despliegue-soberania"
+        "fr": "produit/securite",
+        "en": "product/security",
+        "es": "producto/seguridad"
       },
       "title": {
         "fr": "Déploiement & Souveraineté",
@@ -340,440 +133,87 @@
         "es": "Despliegue y Soberanía"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:51:11.553Z"
     },
     {
-      "id": "industry-sante",
-      "type": "industry",
+      "id": "service-orchestration",
+      "type": "service",
       "slug": {
-        "fr": "sante",
-        "en": "healthcare",
-        "es": "salud"
+        "fr": "produit/orchestration",
+        "en": "product/orchestration",
+        "es": "producto/orquestacion"
       },
       "title": {
-        "fr": "Santé & Médical",
-        "en": "Healthcare & Medical",
-        "es": "Salud y Médico"
+        "fr": "Orchestration Multi-Modèles",
+        "en": "Multi-Model Orchestration",
+        "es": "Orquestación Multi-Modelos"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:52:19.210Z"
     },
     {
-      "id": "industry-finance",
-      "type": "industry",
+      "id": "service-gouvernance",
+      "type": "service",
       "slug": {
-        "fr": "finance-banque",
-        "en": "finance-banking",
-        "es": "finanzas-banca"
+        "fr": "produit/gouvernance",
+        "en": "product/governance",
+        "es": "producto/gobernanza"
       },
       "title": {
-        "fr": "Finance & Banque",
-        "en": "Finance & Banking",
-        "es": "Finanzas y Banca"
+        "fr": "Gouvernance IA",
+        "en": "AI Governance",
+        "es": "Gobernanza IA"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:53:24.433Z"
     },
     {
-      "id": "industry-assurance",
-      "type": "industry",
+      "id": "service-api",
+      "type": "service",
       "slug": {
-        "fr": "assurance",
-        "en": "insurance",
-        "es": "seguros"
+        "fr": "produit/api",
+        "en": "product/api",
+        "es": "producto/api"
       },
       "title": {
-        "fr": "Assurance",
-        "en": "Insurance",
-        "es": "Seguros"
+        "fr": "API & Développeurs",
+        "en": "API & Developers",
+        "es": "API y Desarrolladores"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "industry-industrie",
-      "type": "industry",
-      "slug": {
-        "fr": "industrie-manufacturing",
-        "en": "industry-manufacturing",
-        "es": "industria-manufactura"
-      },
-      "title": {
-        "fr": "Industrie & Manufacturing",
-        "en": "Industry & Manufacturing",
-        "es": "Industria y Manufactura"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "industry-retail",
-      "type": "industry",
-      "slug": {
-        "fr": "retail-ecommerce",
-        "en": "retail-ecommerce",
-        "es": "retail-ecommerce"
-      },
-      "title": {
-        "fr": "Retail & E-commerce",
-        "en": "Retail & E-commerce",
-        "es": "Retail y E-commerce"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "industry-secteur-public",
-      "type": "industry",
-      "slug": {
-        "fr": "secteur-public",
-        "en": "public-sector",
-        "es": "sector-publico"
-      },
-      "title": {
-        "fr": "Services Publics & Collectivités",
-        "en": "Public Sector & Government",
-        "es": "Sector Público y Gobierno"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "industry-energie",
-      "type": "industry",
-      "slug": {
-        "fr": "energie-utilities",
-        "en": "energy-utilities",
-        "es": "energia-utilities"
-      },
-      "title": {
-        "fr": "Énergie & Utilities",
-        "en": "Energy & Utilities",
-        "es": "Energía y Utilities"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "industry-immobilier",
-      "type": "industry",
-      "slug": {
-        "fr": "immobilier-construction",
-        "en": "real-estate-construction",
-        "es": "inmobiliario-construccion"
-      },
-      "title": {
-        "fr": "Immobilier & Construction",
-        "en": "Real Estate & Construction",
-        "es": "Inmobiliario y Construcción"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "industry-transport",
-      "type": "industry",
-      "slug": {
-        "fr": "transport-logistique",
-        "en": "transport-logistics",
-        "es": "transporte-logistica"
-      },
-      "title": {
-        "fr": "Transport & Logistique",
-        "en": "Transport & Logistics",
-        "es": "Transporte y Logística"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "industry-education",
-      "type": "industry",
-      "slug": {
-        "fr": "education-formation",
-        "en": "education-training",
-        "es": "educacion-formacion"
-      },
-      "title": {
-        "fr": "Éducation & Formation",
-        "en": "Education & Training",
-        "es": "Educación y Formación"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "industry-juridique",
-      "type": "industry",
-      "slug": {
-        "fr": "juridique-cabinets",
-        "en": "legal-law-firms",
-        "es": "juridico-despachos"
-      },
-      "title": {
-        "fr": "Juridique & Cabinets",
-        "en": "Legal & Law Firms",
-        "es": "Jurídico y Despachos"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "industry-conseil",
-      "type": "industry",
-      "slug": {
-        "fr": "conseil-services-professionnels",
-        "en": "consulting-professional-services",
-        "es": "consultoria-servicios-profesionales"
-      },
-      "title": {
-        "fr": "Conseil & Services Professionnels",
-        "en": "Consulting & Professional Services",
-        "es": "Consultoría y Servicios Profesionales"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "metier-dirigeants",
-      "type": "metier",
-      "slug": {
-        "fr": "dirigeants-comex",
-        "en": "executives-c-suite",
-        "es": "directivos-comite"
-      },
-      "title": {
-        "fr": "Dirigeants & COMEX",
-        "en": "Executives & C-Suite",
-        "es": "Directivos y COMEX"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-dsi",
-      "type": "metier",
-      "slug": {
-        "fr": "dsi-cto",
-        "en": "cio-cto",
-        "es": "cio-cto"
-      },
-      "title": {
-        "fr": "DSI & CTO",
-        "en": "CIO & CTO",
-        "es": "CIO y CTO"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-rssi",
-      "type": "metier",
-      "slug": {
-        "fr": "rssi-securite",
-        "en": "ciso-security",
-        "es": "ciso-seguridad"
-      },
-      "title": {
-        "fr": "RSSI & Sécurité",
-        "en": "CISO & Security",
-        "es": "CISO y Seguridad"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-dpo",
-      "type": "metier",
-      "slug": {
-        "fr": "dpo-conformite",
-        "en": "dpo-compliance",
-        "es": "dpo-cumplimiento"
-      },
-      "title": {
-        "fr": "DPO & Conformité",
-        "en": "DPO & Compliance",
-        "es": "DPO y Cumplimiento"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-daf",
-      "type": "metier",
-      "slug": {
-        "fr": "daf-finance",
-        "en": "cfo-finance",
-        "es": "cfo-finanzas"
-      },
-      "title": {
-        "fr": "DAF & Finance",
-        "en": "CFO & Finance",
-        "es": "CFO y Finanzas"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-drh",
-      "type": "metier",
-      "slug": {
-        "fr": "drh-rh",
-        "en": "chro-hr",
-        "es": "chro-rrhh"
-      },
-      "title": {
-        "fr": "DRH & RH",
-        "en": "CHRO & HR",
-        "es": "CHRO y RRHH"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "metier-juridique",
-      "type": "metier",
-      "slug": {
-        "fr": "directeur-juridique",
-        "en": "general-counsel",
-        "es": "director-juridico"
-      },
-      "title": {
-        "fr": "Directeur Juridique",
-        "en": "General Counsel",
-        "es": "Director Jurídico"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "high",
-      "batch": 1
-    },
-    {
-      "id": "metier-marketing",
-      "type": "metier",
-      "slug": {
-        "fr": "directeur-marketing",
-        "en": "cmo-marketing",
-        "es": "director-marketing"
-      },
-      "title": {
-        "fr": "Directeur Marketing",
-        "en": "CMO & Marketing",
-        "es": "Director de Marketing"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:54:26.591Z"
     },
     {
       "id": "metier-commercial",
       "type": "metier",
       "slug": {
-        "fr": "directeur-commercial",
-        "en": "cso-sales",
-        "es": "director-comercial"
+        "fr": "departements/ventes",
+        "en": "departments/sales",
+        "es": "departamentos/ventas"
       },
       "title": {
         "fr": "Directeur Commercial",
@@ -781,20 +221,21 @@
         "es": "Director Comercial"
       },
       "status": {
-        "fr": "pending",
+        "fr": "generated",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0,
+      "generatedAt": "2025-12-25T16:55:41.665Z"
     },
     {
       "id": "metier-support",
       "type": "metier",
       "slug": {
-        "fr": "support-client",
-        "en": "customer-support",
-        "es": "soporte-cliente"
+        "fr": "departements/support-client",
+        "en": "departments/customer-support",
+        "es": "departamentos/soporte-cliente"
       },
       "title": {
         "fr": "Support Client",
@@ -807,57 +248,36 @@
         "es": "pending"
       },
       "priority": "high",
-      "batch": 1
+      "batch": 0
     },
     {
-      "id": "metier-rnd",
+      "id": "metier-marketing",
       "type": "metier",
       "slug": {
-        "fr": "rnd-innovation",
-        "en": "rd-innovation",
-        "es": "id-innovacion"
+        "fr": "departements/marketing",
+        "en": "departments/marketing",
+        "es": "departamentos/marketing"
       },
       "title": {
-        "fr": "R&D & Innovation",
-        "en": "R&D & Innovation",
-        "es": "I+D e Innovación"
+        "fr": "Directeur Marketing",
+        "en": "CMO & Marketing",
+        "es": "Director de Marketing"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
-    },
-    {
-      "id": "metier-operations",
-      "type": "metier",
-      "slug": {
-        "fr": "operations-coo",
-        "en": "operations-coo",
-        "es": "operaciones-coo"
-      },
-      "title": {
-        "fr": "Opérations & COO",
-        "en": "Operations & COO",
-        "es": "Operaciones y COO"
-      },
-      "status": {
-        "fr": "pending",
-        "en": "pending",
-        "es": "pending"
-      },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
       "id": "metier-developpeurs",
       "type": "metier",
       "slug": {
-        "fr": "developpeurs-it",
-        "en": "developers-it",
-        "es": "desarrolladores-it"
+        "fr": "departements/ingenierie",
+        "en": "departments/engineering",
+        "es": "departamentos/ingenieria"
       },
       "title": {
         "fr": "Développeurs & IT",
@@ -869,197 +289,281 @@
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-microsoft-copilot",
-      "type": "comparison",
+      "id": "metier-daf",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-microsoft-copilot",
-        "en": "superfasttt-vs-microsoft-copilot",
-        "es": "superfasttt-vs-microsoft-copilot"
+        "fr": "departements/finance",
+        "en": "departments/finance",
+        "es": "departamentos/finanzas"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Microsoft 365 Copilot",
-        "en": "SUPERFASTTT vs Microsoft 365 Copilot",
-        "es": "SUPERFASTTT vs Microsoft 365 Copilot"
+        "fr": "DAF & Finance",
+        "en": "CFO & Finance",
+        "es": "CFO y Finanzas"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-google-gemini",
-      "type": "comparison",
+      "id": "metier-drh",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-google-gemini",
-        "en": "superfasttt-vs-google-gemini",
-        "es": "superfasttt-vs-google-gemini"
+        "fr": "departements/rh",
+        "en": "departments/hr",
+        "es": "departamentos/rrhh"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Google Gemini for Workspace",
-        "en": "SUPERFASTTT vs Google Gemini for Workspace",
-        "es": "SUPERFASTTT vs Google Gemini for Workspace"
+        "fr": "DRH & RH",
+        "en": "CHRO & HR",
+        "es": "CHRO y RRHH"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-chatgpt-enterprise",
-      "type": "comparison",
+      "id": "metier-juridique",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-chatgpt-enterprise",
-        "en": "superfasttt-vs-chatgpt-enterprise",
-        "es": "superfasttt-vs-chatgpt-enterprise"
+        "fr": "departements/juridique",
+        "en": "departments/legal",
+        "es": "departamentos/juridico"
       },
       "title": {
-        "fr": "SUPERFASTTT vs ChatGPT Enterprise",
-        "en": "SUPERFASTTT vs ChatGPT Enterprise",
-        "es": "SUPERFASTTT vs ChatGPT Enterprise"
+        "fr": "Directeur Juridique",
+        "en": "General Counsel",
+        "es": "Director Jurídico"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-amazon-q",
-      "type": "comparison",
+      "id": "metier-operations",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-amazon-q",
-        "en": "superfasttt-vs-amazon-q",
-        "es": "superfasttt-vs-amazon-q"
+        "fr": "departements/productivite",
+        "en": "departments/productivity",
+        "es": "departamentos/productividad"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Amazon Q Business",
-        "en": "SUPERFASTTT vs Amazon Q Business",
-        "es": "SUPERFASTTT vs Amazon Q Business"
+        "fr": "Opérations & COO",
+        "en": "Operations & COO",
+        "es": "Operaciones y COO"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-mistral-le-chat",
-      "type": "comparison",
+      "id": "metier-rnd",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-mistral-le-chat",
-        "en": "superfasttt-vs-mistral-le-chat",
-        "es": "superfasttt-vs-mistral-le-chat"
+        "fr": "departements/data-analytics",
+        "en": "departments/data-analytics",
+        "es": "departamentos/data-analytics"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Mistral Le Chat / La Plateforme",
-        "en": "SUPERFASTTT vs Mistral Le Chat / La Plateforme",
-        "es": "SUPERFASTTT vs Mistral Le Chat / La Plateforme"
+        "fr": "R&D & Innovation",
+        "en": "R&D & Innovation",
+        "es": "I+D e Innovación"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-huggingface",
-      "type": "comparison",
+      "id": "metier-knowledge",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-huggingface",
-        "en": "superfasttt-vs-huggingface",
-        "es": "superfasttt-vs-huggingface"
+        "fr": "departements/knowledge",
+        "en": "departments/knowledge",
+        "es": "departamentos/conocimiento"
       },
       "title": {
-        "fr": "SUPERFASTTT vs HuggingFace",
-        "en": "SUPERFASTTT vs HuggingFace",
-        "es": "SUPERFASTTT vs HuggingFace"
+        "fr": "Knowledge Management",
+        "en": "Knowledge Management",
+        "es": "Gestión del Conocimiento"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-notion-ai",
-      "type": "comparison",
+      "id": "metier-dirigeants",
+      "type": "metier",
       "slug": {
-        "fr": "superfasttt-vs-notion-ai",
-        "en": "superfasttt-vs-notion-ai",
-        "es": "superfasttt-vs-notion-ai"
+        "fr": "departements/direction",
+        "en": "departments/executives",
+        "es": "departamentos/direccion"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Notion AI",
-        "en": "SUPERFASTTT vs Notion AI",
-        "es": "SUPERFASTTT vs Notion AI"
+        "fr": "Dirigeants & COMEX",
+        "en": "Executives & C-Suite",
+        "es": "Directivos y COMEX"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-langchain-diy",
-      "type": "comparison",
+      "id": "industry-enterprise",
+      "type": "industry",
       "slug": {
-        "fr": "superfasttt-vs-langchain-diy",
-        "en": "superfasttt-vs-langchain-diy",
-        "es": "superfasttt-vs-langchain-diy"
+        "fr": "solutions/entreprises",
+        "en": "solutions/enterprise",
+        "es": "soluciones/empresas"
       },
       "title": {
-        "fr": "SUPERFASTTT vs LangChain / LlamaIndex (DIY)",
-        "en": "SUPERFASTTT vs LangChain / LlamaIndex (DIY)",
-        "es": "SUPERFASTTT vs LangChain / LlamaIndex (DIY)"
+        "fr": "ETI & Grandes Entreprises",
+        "en": "Mid-size & Large Enterprises",
+        "es": "PYMES y Grandes Empresas"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
     },
     {
-      "id": "comparison-ollama-local",
-      "type": "comparison",
+      "id": "industry-sante",
+      "type": "industry",
       "slug": {
-        "fr": "superfasttt-vs-ollama-local",
-        "en": "superfasttt-vs-ollama-local",
-        "es": "superfasttt-vs-ollama-local"
+        "fr": "solutions/sante",
+        "en": "solutions/healthcare",
+        "es": "soluciones/salud"
       },
       "title": {
-        "fr": "SUPERFASTTT vs Ollama / LocalAI",
-        "en": "SUPERFASTTT vs Ollama / LocalAI",
-        "es": "SUPERFASTTT vs Ollama / LocalAI"
+        "fr": "Santé & Médical",
+        "en": "Healthcare & Medical",
+        "es": "Salud y Médico"
       },
       "status": {
         "fr": "pending",
         "en": "pending",
         "es": "pending"
       },
-      "priority": "medium",
-      "batch": 2
+      "priority": "high",
+      "batch": 0
+    },
+    {
+      "id": "industry-finance",
+      "type": "industry",
+      "slug": {
+        "fr": "solutions/finance",
+        "en": "solutions/finance",
+        "es": "soluciones/finanzas"
+      },
+      "title": {
+        "fr": "Finance & Banque",
+        "en": "Finance & Banking",
+        "es": "Finanzas y Banca"
+      },
+      "status": {
+        "fr": "pending",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0
+    },
+    {
+      "id": "industry-industrie",
+      "type": "industry",
+      "slug": {
+        "fr": "solutions/industrie",
+        "en": "solutions/manufacturing",
+        "es": "soluciones/industria"
+      },
+      "title": {
+        "fr": "Industrie & Manufacturing",
+        "en": "Industry & Manufacturing",
+        "es": "Industria y Manufactura"
+      },
+      "status": {
+        "fr": "pending",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0
+    },
+    {
+      "id": "industry-secteur-public",
+      "type": "industry",
+      "slug": {
+        "fr": "solutions/administration",
+        "en": "solutions/public-sector",
+        "es": "soluciones/administracion"
+      },
+      "title": {
+        "fr": "Services Publics & Collectivités",
+        "en": "Public Sector & Government",
+        "es": "Sector Público y Gobierno"
+      },
+      "status": {
+        "fr": "pending",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0
+    },
+    {
+      "id": "industry-juridique",
+      "type": "industry",
+      "slug": {
+        "fr": "solutions/juridique",
+        "en": "solutions/legal",
+        "es": "soluciones/juridico"
+      },
+      "title": {
+        "fr": "Juridique & Cabinets",
+        "en": "Legal & Law Firms",
+        "es": "Jurídico y Despachos"
+      },
+      "status": {
+        "fr": "pending",
+        "en": "pending",
+        "es": "pending"
+      },
+      "priority": "high",
+      "batch": 0
     }
   ]
 }

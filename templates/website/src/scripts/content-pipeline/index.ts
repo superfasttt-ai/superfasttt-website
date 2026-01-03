@@ -3,17 +3,25 @@
  * Main orchestrator for AI content generation
  */
 
+import type { Payload } from 'payload'
+
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+
 import { validateConfig } from './config'
 import { getPageGenerator } from './generators/page-generator'
+import { createPagePublisher, type PagePublisher } from './publishers/page-publisher'
 import { getRegistry } from './registry/content-registry'
 import { getIndustryById, getMetierById, getServiceById, printTaxonomySummary } from './taxonomy'
 import type {
   ContentType,
+  GeneratedPage,
   GenerationOptions,
   GenerationResult,
   Locale,
   RegistryPage,
 } from './types'
+import { addFAQToPage, generateFAQForPage, type PageContent } from '../add-faq-to-page'
 
 // Re-export types and utilities
 export * from './types'
@@ -33,6 +41,8 @@ export * from './taxonomy'
 export class ContentPipeline {
   private generator = getPageGenerator()
   private registry = getRegistry()
+  private payload: Payload | null = null
+  private publisher: PagePublisher | null = null
 
   /**
    * Initialize the pipeline
@@ -42,6 +52,11 @@ export class ContentPipeline {
 
     // Validate configuration
     validateConfig()
+
+    // Initialize Payload
+    this.payload = await getPayload({ config: configPromise })
+    this.publisher = createPagePublisher(this.payload)
+    console.log('✅ Payload CMS initialized\n')
 
     // Load registry
     await this.registry.load()
@@ -146,48 +161,96 @@ export class ContentPipeline {
       generateImageBriefs: options.generateImageBriefs,
     }
 
+    let generatedPage: GeneratedPage
+    let duration: number
+
     switch (page.type) {
       case 'service': {
         const service = getServiceById(page.id)
         if (!service) throw new Error(`Service not found: ${page.id}`)
         const result = await this.generator.generateServicePage(service, locale, genOptions)
-        return {
-          success: true,
-          pageId: page.id,
-          slug: result.page.slug,
-          locale,
-          duration: result.duration,
-        }
+        generatedPage = result.page
+        duration = result.duration
+        break
       }
 
       case 'industry': {
         const industry = getIndustryById(page.id)
         if (!industry) throw new Error(`Industry not found: ${page.id}`)
         const result = await this.generator.generateIndustryPage(industry, locale, genOptions)
-        return {
-          success: true,
-          pageId: page.id,
-          slug: result.page.slug,
-          locale,
-          duration: result.duration,
-        }
+        generatedPage = result.page
+        duration = result.duration
+        break
       }
 
       case 'metier': {
         const metier = getMetierById(page.id)
         if (!metier) throw new Error(`Metier not found: ${page.id}`)
         const result = await this.generator.generateMetierPage(metier, locale, genOptions)
-        return {
-          success: true,
-          pageId: page.id,
-          slug: result.page.slug,
-          locale,
-          duration: result.duration,
-        }
+        generatedPage = result.page
+        duration = result.duration
+        break
       }
 
       default:
         throw new Error(`Unsupported content type: ${page.type}`)
+    }
+
+    // Publish to Payload CMS
+    let payloadId: string | undefined
+    if (this.publisher) {
+      const publishResult = await this.publisher.publishPage(generatedPage, locale, {
+        asDraft: options.asDraft ?? true,
+        disableRevalidate: true,
+      })
+
+      if (!publishResult.success) {
+        throw new Error(`Failed to publish: ${publishResult.error}`)
+      }
+
+      payloadId = publishResult.payloadId
+      console.log(`📤 Published to Payload: ${generatedPage.title} (ID: ${payloadId})`)
+
+      // Generate FAQ if option enabled
+      if (options.withFaq && payloadId && this.payload) {
+        console.log(`🔄 Generating FAQ for: ${generatedPage.title}`)
+        try {
+          // Fetch the published page to get its content
+          const publishedPage = await this.payload.findByID({
+            collection: 'pages',
+            id: payloadId,
+            locale,
+          })
+
+          if (publishedPage) {
+            const pageContent: PageContent = {
+              id: payloadId,
+              title: publishedPage.title as string,
+              slug: publishedPage.slug as string,
+              layout: (publishedPage.layout as any[]) || [],
+              meta: publishedPage.meta as any,
+            }
+
+            const faq = await generateFAQForPage(pageContent, locale)
+            if (faq) {
+              const faqAdded = await addFAQToPage(this.payload, payloadId, faq, locale)
+              if (faqAdded) {
+                console.log(`✅ FAQ added to: ${generatedPage.title}`)
+              }
+            }
+          }
+        } catch (faqError) {
+          console.error(`⚠️ Failed to generate FAQ (page still created): ${faqError}`)
+        }
+      }
+    }
+
+    return {
+      success: true,
+      pageId: page.id,
+      slug: generatedPage.slug,
+      locale,
+      duration,
     }
   }
 
@@ -238,6 +301,7 @@ export function parseArgs(args: string[]): Partial<GenerationOptions> {
     asDraft: true,
     includeResearch: true,
     generateImageBriefs: true,
+    withFaq: false,
   }
 
   for (let i = 0; i < args.length; i++) {
@@ -267,6 +331,8 @@ export function parseArgs(args: string[]): Partial<GenerationOptions> {
       options.generateImageBriefs = false
     } else if (arg === '--publish') {
       options.asDraft = false
+    } else if (arg === '--with-faq') {
+      options.withFaq = true
     }
   }
 

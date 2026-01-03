@@ -6,7 +6,6 @@ import type { Footer as FooterType, Media } from '@/payload-types'
 import type { Locale } from '@/i18n/config'
 import { defaultLocale } from '@/i18n/config'
 
-import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 
@@ -59,7 +58,7 @@ export async function Footer({ locale = defaultLocale }: FooterProps) {
   const logoMedia = footerData?.logo as Media | null
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
+    <footer className="mt-auto border-t border-border bg-primary text-white">
       {/* Main Footer Content - 5 Columns */}
       <div className="container py-12">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
@@ -73,7 +72,7 @@ export async function Footer({ locale = defaultLocale }: FooterProps) {
                   <li key={linkIndex}>
                     <CMSLink
                       {...linkItem.link}
-                      className="text-gray-400 hover:text-white text-sm transition-colors"
+                      className="text-gray-400 hover:text-accent text-sm transition-colors"
                     >
                       {linkItem.label}
                     </CMSLink>
@@ -95,7 +94,7 @@ export async function Footer({ locale = defaultLocale }: FooterProps) {
                 {logoMedia?.url ? (
                   <img src={logoMedia.url} alt={logoMedia.alt || 'Logo'} className="h-6 w-auto" />
                 ) : (
-                  <Logo className="h-6" />
+                  <Logo className="h-6" variant="light" />
                 )}
               </Link>
               {bottomBar?.copyright && (
@@ -115,7 +114,7 @@ export async function Footer({ locale = defaultLocale }: FooterProps) {
               </div>
             )}
 
-            {/* Right: Social Links + Theme */}
+            {/* Right: Social Links */}
             <div className="flex items-center gap-4">
               {bottomBar?.socialLinks?.map((social, i) => (
                 <a
@@ -123,13 +122,12 @@ export async function Footer({ locale = defaultLocale }: FooterProps) {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-accent transition-colors"
                   aria-label={social.platform}
                 >
                   <SocialIcon platform={social.platform} />
                 </a>
               ))}
-              <ThemeSelector />
             </div>
           </div>
         </div>

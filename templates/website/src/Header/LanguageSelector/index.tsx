@@ -16,6 +16,7 @@ interface LanguageSelectorProps {
   currentLocale?: string
   variant?: 'dropdown' | 'inline'
   onSelect?: () => void
+  isOverDark?: boolean
 }
 
 // Parse pathname to extract locale and slug
@@ -42,6 +43,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   currentLocale = 'fr',
   variant = 'dropdown',
   onSelect,
+  isOverDark = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [alternateSlugs, setAlternateSlugs] = useState<Record<string, string> | null>(null)
@@ -133,11 +135,16 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   }
 
   // Dropdown variant for desktop
+  const buttonTextColor = isOverDark
+    ? 'text-white/70 hover:text-white'
+    : 'text-primary/70 hover:text-primary'
+  const buttonBgHover = isOverDark ? 'hover:bg-white/10' : 'hover:bg-muted'
+
   return (
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-2 text-sm text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800/50 transition-all duration-200"
+        className={`flex items-center gap-1.5 px-3 py-2 text-sm rounded-full transition-all duration-200 ${buttonTextColor} ${buttonBgHover}`}
       >
         <Globe className="w-4 h-4" />
         <span>{currentLang.label}</span>

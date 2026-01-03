@@ -142,6 +142,67 @@ Examples:
 - Subsequent commits should use `chore` without scope unless specific package is being modified
 - All commits in a PR are squashed on merge using PR title as commit message
 
+## Website Template Scripts
+
+The `templates/website/` directory contains scripts for content generation and management.
+
+### Add FAQ to Pages (AI Agent)
+
+Generate and add FAQ sections to existing pages using Claude AI:
+
+```bash
+cd templates/website
+
+# Add FAQ to a specific page by slug
+pnpm tsx src/scripts/add-faq-to-page.ts --slug=/services/ia-entreprise
+
+# Add FAQ to a specific page by Payload ID
+pnpm tsx src/scripts/add-faq-to-page.ts --id=abc123
+
+# Process all pages without FAQ (with limit)
+pnpm tsx src/scripts/add-faq-to-page.ts --all --limit=5
+
+# Dry run (preview without changes)
+pnpm tsx src/scripts/add-faq-to-page.ts --all --dry-run
+
+# Specify locale
+pnpm tsx src/scripts/add-faq-to-page.ts --slug=/services/ai --locale=en
+```
+
+The script:
+
+1. Reads the page content (hero, features, stats, etc.)
+2. Sends context to Claude to generate 4-8 relevant Q&A pairs
+3. Converts answers to Lexical rich text format
+4. Adds the FAQ block before the CTA (or at the end)
+5. Skips pages that already have a FAQ block
+
+### Content Pipeline
+
+Generate pages with AI using the content pipeline:
+
+```bash
+cd templates/website
+
+# Generate specific page
+pnpm tsx src/scripts/content-pipeline/index.ts --id=service-ia
+
+# Generate with research
+pnpm tsx src/scripts/content-pipeline/index.ts --type=service --limit=5
+```
+
+### Seed Scripts
+
+```bash
+cd templates/website
+
+# Seed homepage (French)
+pnpm seed:homepage
+
+# Seed vue ensemble page
+pnpm seed:vue-ensemble
+```
+
 ## Additional Resources
 
 - LLMS.txt: <https://payloadcms.com/llms.txt>

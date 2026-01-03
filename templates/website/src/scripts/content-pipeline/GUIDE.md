@@ -446,3 +446,60 @@ pnpm content:generate --limit=5
 rm -f src/scripts/content-pipeline/registry/content-registry.json
 pnpm content:status
 ```
+
+---
+
+## Ajouter des FAQ aux pages existantes
+
+Le script `add-faq-to-page.ts` permet d'ajouter automatiquement des sections FAQ aux pages existantes via Claude AI.
+
+### Commandes
+
+```bash
+# Ajouter une FAQ à une page par slug
+pnpm tsx src/scripts/add-faq-to-page.ts --slug=/services/ia-entreprise
+
+# Ajouter une FAQ à une page par ID Payload
+pnpm tsx src/scripts/add-faq-to-page.ts --id=abc123
+
+# Traiter toutes les pages sans FAQ (avec limite)
+pnpm tsx src/scripts/add-faq-to-page.ts --all --limit=5
+
+# Dry run (prévisualisation sans modification)
+pnpm tsx src/scripts/add-faq-to-page.ts --all --dry-run
+
+# Spécifier une langue
+pnpm tsx src/scripts/add-faq-to-page.ts --slug=/services/ai --locale=en
+```
+
+### Fonctionnement
+
+1. **Lecture du contenu** - Le script lit le contenu de la page (hero, features, stats, etc.)
+2. **Génération par Claude** - Envoie le contexte à Claude pour générer 4-8 Q&A pertinentes
+3. **Conversion Lexical** - Les réponses sont converties au format rich text Lexical
+4. **Insertion intelligente** - La FAQ est ajoutée avant le CTA final (ou à la fin)
+5. **Détection doublons** - Les pages ayant déjà une FAQ sont automatiquement ignorées
+
+### Options
+
+| Option              | Description                             |
+| ------------------- | --------------------------------------- |
+| `--slug=<slug>`     | Cibler une page par son slug            |
+| `--id=<id>`         | Cibler une page par son ID Payload      |
+| `--all`             | Traiter toutes les pages sans FAQ       |
+| `--limit=<n>`       | Limiter le nombre de pages (défaut: 10) |
+| `--locale=<locale>` | Langue (fr, en, es) (défaut: fr)        |
+| `--dry-run`         | Prévisualiser sans modifier             |
+
+### Exemple de workflow
+
+```bash
+# 1. Voir les pages à traiter
+pnpm tsx src/scripts/add-faq-to-page.ts --all --dry-run
+
+# 2. Ajouter des FAQ aux 5 premières pages
+pnpm tsx src/scripts/add-faq-to-page.ts --all --limit=5
+
+# 3. Ajouter FAQ à une page spécifique en anglais
+pnpm tsx src/scripts/add-faq-to-page.ts --slug=/en/services/ai --locale=en
+```

@@ -13,6 +13,14 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { defaultLocale, locales, type Locale, isValidLocale } from '@/i18n/config'
+import {
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateServiceSchema,
+  JsonLdScript,
+} from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
+import type { FAQBlock } from '@/payload-types'
 
 // Parse les segments d'URL pour extraire locale et slug
 function parseSegments(segments: string[]): { locale: Locale; slug: string } {
@@ -55,19 +63,27 @@ export async function generateStaticParams() {
     })
 
     if (locale === defaultLocale) {
-      // Pour FR: ['vue-ensemble'], ['contact'], etc.
+      // Pour FR: ['solutions', 'sante'], ['contact'], etc.
       const params = pages.docs
         ?.filter((doc) => doc.slug !== 'home')
-        .map(({ slug }) => ({ slug: [slug as string] }))
+        .map(({ slug }) => {
+          // Split le slug pour gérer les chemins comme 'solutions/sante'
+          const slugParts = (slug as string).split('/')
+          return { slug: slugParts }
+        })
       allParams.push(...params)
     } else {
-      // Pour EN/ES: ['en'], ['en', 'overview'], etc.
+      // Pour EN/ES: ['en'], ['en', 'solutions', 'healthcare'], etc.
       // Page d'accueil de la locale
       allParams.push({ slug: [locale] })
       // Autres pages
       const params = pages.docs
         ?.filter((doc) => doc.slug !== 'home')
-        .map(({ slug }) => ({ slug: [locale, slug as string] }))
+        .map(({ slug }) => {
+          // Split le slug et ajoute la locale en premier
+          const slugParts = (slug as string).split('/')
+          return { slug: [locale, ...slugParts] }
+        })
       allParams.push(...params)
     }
   }
@@ -118,8 +134,40 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
 
+  // Générer les JSON-LD schemas
+  const siteUrl = getServerSideURL()
+  const jsonLdSchemas: object[] = []
+
+  // Breadcrumb schema
+  const breadcrumbItems = [{ name: 'Accueil', url: siteUrl }]
+  if (decodedSlug !== 'home') {
+    const slugParts = decodedSlug.split('/')
+    let currentPath = locale === defaultLocale ? '' : `/${locale}`
+    slugParts.forEach((part, index) => {
+      currentPath += `/${part}`
+      const name = page.title && index === slugParts.length - 1 ? page.title : part
+      breadcrumbItems.push({ name, url: `${siteUrl}${currentPath}` })
+    })
+  }
+  jsonLdSchemas.push(generateBreadcrumbSchema(breadcrumbItems))
+
+  // FAQ schema si la page contient un bloc FAQ
+  const faqBlock = layout?.find((block): block is FAQBlock => block.blockType === 'faq')
+  if (faqBlock) {
+    const faqSchema = generateFAQSchema(faqBlock)
+    if (faqSchema) {
+      jsonLdSchemas.push(faqSchema)
+    }
+  }
+
+  // Service schema si le slug contient "services" ou "solutions"
+  if (decodedSlug.includes('services') || decodedSlug.includes('solutions')) {
+    jsonLdSchemas.push(generateServiceSchema(page, locale))
+  }
+
   return (
     <article className="pt-16 pb-24">
+      <JsonLdScript data={jsonLdSchemas} />
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />

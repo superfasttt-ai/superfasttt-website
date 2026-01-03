@@ -24,6 +24,163 @@ export interface PublishResult {
 }
 
 // ============================================================================
+// ICON VALIDATION
+// ============================================================================
+
+const FEATURE_GRID_ICONS = [
+  'brain',
+  'database',
+  'cloud',
+  'shield',
+  'users',
+  'zap',
+  'code',
+  'globe',
+  'lock',
+  'layers',
+  'settings',
+  'chart',
+] as const
+
+const PRODUCT_SHOWCASE_ICONS = [
+  'brain',
+  'users',
+  'layers',
+  'cloud',
+  'zap',
+  'shield',
+  'headphones',
+  'database',
+  'code',
+  'globe',
+  'lock',
+  'settings',
+  'chart',
+  'rocket',
+  'terminal',
+  'workflow',
+] as const
+
+const TRUST_INDICATOR_ICONS = ['shield', 'globe', 'lock', 'check', 'star', 'zap'] as const
+
+type FeatureGridIcon = (typeof FEATURE_GRID_ICONS)[number]
+type ProductShowcaseIcon = (typeof PRODUCT_SHOWCASE_ICONS)[number]
+type TrustIndicatorIcon = (typeof TRUST_INDICATOR_ICONS)[number]
+
+const ICON_MAPPINGS: Record<string, string> = {
+  // Common mappings for invalid icons
+  search: 'globe',
+  file: 'database',
+  document: 'database',
+  folder: 'layers',
+  check: 'shield',
+  checkmark: 'shield',
+  star: 'zap',
+  lightning: 'zap',
+  bolt: 'zap',
+  gear: 'settings',
+  cog: 'settings',
+  server: 'database',
+  storage: 'database',
+  network: 'cloud',
+  api: 'code',
+  integration: 'layers',
+  connect: 'cloud',
+  link: 'cloud',
+  refresh: 'zap',
+  sync: 'cloud',
+  upload: 'cloud',
+  download: 'cloud',
+  analytics: 'chart',
+  graph: 'chart',
+  metrics: 'chart',
+  dashboard: 'chart',
+  report: 'chart',
+  key: 'lock',
+  security: 'shield',
+  protect: 'shield',
+  safe: 'shield',
+  team: 'users',
+  people: 'users',
+  group: 'users',
+  person: 'users',
+  user: 'users',
+  ai: 'brain',
+  intelligence: 'brain',
+  neural: 'brain',
+  learning: 'brain',
+  model: 'brain',
+  cpu: 'brain',
+  chip: 'brain',
+  fast: 'zap',
+  speed: 'zap',
+  quick: 'zap',
+  performance: 'zap',
+  world: 'globe',
+  earth: 'globe',
+  international: 'globe',
+  language: 'globe',
+  translation: 'globe',
+  stack: 'layers',
+  module: 'layers',
+  component: 'layers',
+  block: 'layers',
+  box: 'layers',
+  package: 'layers',
+  terminal: 'terminal',
+  console: 'terminal',
+  cli: 'terminal',
+  command: 'terminal',
+  launch: 'rocket',
+  deploy: 'rocket',
+  start: 'rocket',
+  automation: 'workflow',
+  process: 'workflow',
+  flow: 'workflow',
+  pipeline: 'workflow',
+  support: 'headphones',
+  help: 'headphones',
+  service: 'headphones',
+  customer: 'headphones',
+}
+
+function validateFeatureGridIcon(icon: string): FeatureGridIcon {
+  const lowerIcon = icon?.toLowerCase() || ''
+  if (FEATURE_GRID_ICONS.includes(lowerIcon as FeatureGridIcon)) {
+    return lowerIcon as FeatureGridIcon
+  }
+  const mapped = ICON_MAPPINGS[lowerIcon]
+  if (mapped && FEATURE_GRID_ICONS.includes(mapped as FeatureGridIcon)) {
+    return mapped as FeatureGridIcon
+  }
+  return 'brain' // default fallback
+}
+
+function validateProductShowcaseIcon(icon: string): ProductShowcaseIcon {
+  const lowerIcon = icon?.toLowerCase() || ''
+  if (PRODUCT_SHOWCASE_ICONS.includes(lowerIcon as ProductShowcaseIcon)) {
+    return lowerIcon as ProductShowcaseIcon
+  }
+  const mapped = ICON_MAPPINGS[lowerIcon]
+  if (mapped && PRODUCT_SHOWCASE_ICONS.includes(mapped as ProductShowcaseIcon)) {
+    return mapped as ProductShowcaseIcon
+  }
+  return 'brain' // default fallback
+}
+
+function validateTrustIndicatorIcon(icon: string): TrustIndicatorIcon {
+  const lowerIcon = icon?.toLowerCase() || ''
+  if (TRUST_INDICATOR_ICONS.includes(lowerIcon as TrustIndicatorIcon)) {
+    return lowerIcon as TrustIndicatorIcon
+  }
+  const mapped = ICON_MAPPINGS[lowerIcon]
+  if (mapped && TRUST_INDICATOR_ICONS.includes(mapped as TrustIndicatorIcon)) {
+    return mapped as TrustIndicatorIcon
+  }
+  return 'shield' // default fallback
+}
+
+// ============================================================================
 // BLOCK TRANSFORMERS
 // ============================================================================
 
@@ -48,10 +205,18 @@ function transformBlocks(layout: GeneratedPage['layout']): any[] {
               url: link.link.url,
             },
           })),
-          trustIndicators: block.trustIndicators?.map((indicator) => ({
-            icon: indicator.icon,
-            text: indicator.text,
-          })),
+          trustIndicators: block.trustIndicators
+            ? {
+                headline: '',
+                indicators: (Array.isArray(block.trustIndicators)
+                  ? block.trustIndicators
+                  : block.trustIndicators.indicators || []
+                ).map((indicator: any) => ({
+                  icon: validateTrustIndicatorIcon(indicator.icon),
+                  label: indicator.text || indicator.label,
+                })),
+              }
+            : undefined,
         }
 
       case 'featureGrid':
@@ -63,7 +228,7 @@ function transformBlocks(layout: GeneratedPage['layout']): any[] {
           description: block.description,
           columns: block.columns,
           features: block.features.map((feature) => ({
-            icon: feature.icon,
+            icon: validateFeatureGridIcon(feature.icon),
             title: feature.title,
             description: feature.description,
           })),
@@ -80,9 +245,8 @@ function transformBlocks(layout: GeneratedPage['layout']): any[] {
           items: block.items.map((item) => ({
             title: item.title,
             description: item.description,
-            icon: item.icon,
-            animationType: item.animationType,
-            keyFeatures: item.keyFeatures?.map((kf) => ({ feature: kf.feature })),
+            icon: item.icon ? validateProductShowcaseIcon(item.icon) : undefined,
+            features: item.keyFeatures?.map((kf) => ({ text: kf.feature })),
           })),
         }
 
@@ -142,6 +306,20 @@ function transformBlocks(layout: GeneratedPage['layout']): any[] {
           })),
         }
 
+      case 'faq':
+        return {
+          blockType: 'faq',
+          blockName: block.blockName,
+          badge: block.badge,
+          title: block.title,
+          description: block.description,
+          items: block.items.map((item) => ({
+            question: item.question,
+            answer: item.answer,
+          })),
+          allowMultipleOpen: block.allowMultipleOpen ?? false,
+        }
+
       default:
         return block
     }
@@ -150,17 +328,13 @@ function transformBlocks(layout: GeneratedPage['layout']): any[] {
 
 /**
  * Get URL prefix for content type
+ * NOTE: This is now deprecated - slugs from taxonomy already include the prefix
+ * Kept for backward compatibility with old content
  */
-function getUrlPrefix(type: ContentType, locale: Locale): string {
-  const prefixes: Record<ContentType, Record<Locale, string>> = {
-    service: { fr: '/services', en: '/en/services', es: '/es/servicios' },
-    industry: { fr: '/secteurs', en: '/en/industries', es: '/es/sectores' },
-    metier: { fr: '/metiers', en: '/en/roles', es: '/es/profesiones' },
-    usecase: { fr: '/cas-usage', en: '/en/use-cases', es: '/es/casos-uso' },
-    comparison: { fr: '/comparatifs', en: '/en/comparisons', es: '/es/comparativas' },
-    'blog-post': { fr: '/blog', en: '/en/blog', es: '/es/blog' },
-  }
-  return prefixes[type]?.[locale] || ''
+function getUrlPrefix(_type: ContentType, _locale: Locale): string {
+  // Slugs in taxonomy now include the full path (e.g., 'produit/rag', 'solutions/sante')
+  // No additional prefix needed
+  return ''
 }
 
 // ============================================================================

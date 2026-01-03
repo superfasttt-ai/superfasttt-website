@@ -82,31 +82,31 @@ export const Brain: React.FC<BrainProps> = ({ className = '' }) => {
         aria-label="Visualisation d'un cerveau avec des connexions neuronales animées"
       >
         <defs>
-          {/* Gradient principal emerald → cyan → blue */}
+          {/* Gradient principal teal → secondaire → primaire */}
           <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#0d9488" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.8" />
           </linearGradient>
 
           {/* Gradient pour les connexions */}
           <linearGradient id="connection-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#0d9488" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.3" />
           </linearGradient>
 
           {/* Gradient pour le contour du cerveau */}
           <linearGradient id="brain-outline" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#0d9488" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.4" />
           </linearGradient>
 
           {/* Gradient pour les signaux */}
           <radialGradient id="signal-gradient">
-            <stop offset="0%" stopColor="#22d3ee" stopOpacity="1" />
-            <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="1" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
           </radialGradient>
 
           {/* Filtre de lueur */}
@@ -223,7 +223,7 @@ export const Brain: React.FC<BrainProps> = ({ className = '' }) => {
                 cy={node.y}
                 r={node.size + 4}
                 fill="none"
-                stroke="#22d3ee"
+                stroke="#14B8A6"
                 strokeWidth="1"
                 opacity="0"
               >
@@ -264,7 +264,7 @@ export const Brain: React.FC<BrainProps> = ({ className = '' }) => {
             if (!fromNode || !toNode) return null
 
             return (
-              <circle key={`signal-${i}`} r="3" fill="#22d3ee" opacity="0">
+              <circle key={`signal-${i}`} r="3" fill="#14B8A6" opacity="0">
                 <animate
                   attributeName="cx"
                   values={`${fromNode.x};${toNode.x}`}
@@ -306,7 +306,7 @@ export const Brain: React.FC<BrainProps> = ({ className = '' }) => {
               cx={particle.x}
               cy={particle.y}
               r="1.5"
-              fill="#34d399"
+              fill="#14B8A6"
               opacity="0"
             >
               <animate

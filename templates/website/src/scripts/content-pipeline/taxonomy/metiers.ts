@@ -13,9 +13,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-dirigeants',
     type: 'metier',
     slug: {
-      fr: 'dirigeants-comex',
-      en: 'executives-c-suite',
-      es: 'directivos-comite',
+      fr: 'departements/direction',
+      en: 'departments/executives',
+      es: 'departamentos/direccion',
     },
     title: {
       fr: 'Dirigeants & COMEX',
@@ -57,9 +57,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-dsi',
     type: 'metier',
     slug: {
-      fr: 'dsi-cto',
-      en: 'cio-cto',
-      es: 'cio-cto',
+      fr: 'departements/it',
+      en: 'departments/it',
+      es: 'departamentos/it',
     },
     title: {
       fr: 'DSI & CTO',
@@ -106,9 +106,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-rssi',
     type: 'metier',
     slug: {
-      fr: 'rssi-securite',
-      en: 'ciso-security',
-      es: 'ciso-seguridad',
+      fr: 'departements/securite',
+      en: 'departments/security',
+      es: 'departamentos/seguridad',
     },
     title: {
       fr: 'RSSI & Sécurité',
@@ -150,9 +150,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-dpo',
     type: 'metier',
     slug: {
-      fr: 'dpo-conformite',
-      en: 'dpo-compliance',
-      es: 'dpo-cumplimiento',
+      fr: 'departements/conformite',
+      en: 'departments/compliance',
+      es: 'departamentos/cumplimiento',
     },
     title: {
       fr: 'DPO & Conformité',
@@ -194,9 +194,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-daf',
     type: 'metier',
     slug: {
-      fr: 'daf-finance',
-      en: 'cfo-finance',
-      es: 'cfo-finanzas',
+      fr: 'departements/finance',
+      en: 'departments/finance',
+      es: 'departamentos/finanzas',
     },
     title: {
       fr: 'DAF & Finance',
@@ -238,9 +238,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-drh',
     type: 'metier',
     slug: {
-      fr: 'drh-rh',
-      en: 'chro-hr',
-      es: 'chro-rrhh',
+      fr: 'departements/rh',
+      en: 'departments/hr',
+      es: 'departamentos/rrhh',
     },
     title: {
       fr: 'DRH & RH',
@@ -287,9 +287,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-juridique',
     type: 'metier',
     slug: {
-      fr: 'directeur-juridique',
-      en: 'general-counsel',
-      es: 'director-juridico',
+      fr: 'departements/juridique',
+      en: 'departments/legal',
+      es: 'departamentos/juridico',
     },
     title: {
       fr: 'Directeur Juridique',
@@ -331,9 +331,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-marketing',
     type: 'metier',
     slug: {
-      fr: 'directeur-marketing',
-      en: 'cmo-marketing',
-      es: 'director-marketing',
+      fr: 'departements/marketing',
+      en: 'departments/marketing',
+      es: 'departamentos/marketing',
     },
     title: {
       fr: 'Directeur Marketing',
@@ -375,9 +375,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-commercial',
     type: 'metier',
     slug: {
-      fr: 'directeur-commercial',
-      en: 'cso-sales',
-      es: 'director-comercial',
+      fr: 'departements/ventes',
+      en: 'departments/sales',
+      es: 'departamentos/ventas',
     },
     title: {
       fr: 'Directeur Commercial',
@@ -419,9 +419,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-support',
     type: 'metier',
     slug: {
-      fr: 'support-client',
-      en: 'customer-support',
-      es: 'soporte-cliente',
+      fr: 'departements/support-client',
+      en: 'departments/customer-support',
+      es: 'departamentos/soporte-cliente',
     },
     title: {
       fr: 'Support Client',
@@ -463,9 +463,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-rnd',
     type: 'metier',
     slug: {
-      fr: 'rnd-innovation',
-      en: 'rd-innovation',
-      es: 'id-innovacion',
+      fr: 'departements/data-analytics',
+      en: 'departments/data-analytics',
+      es: 'departamentos/data-analytics',
     },
     title: {
       fr: 'R&D & Innovation',
@@ -507,9 +507,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-operations',
     type: 'metier',
     slug: {
-      fr: 'operations-coo',
-      en: 'operations-coo',
-      es: 'operaciones-coo',
+      fr: 'departements/productivite',
+      en: 'departments/productivity',
+      es: 'departamentos/productividad',
     },
     title: {
       fr: 'Opérations & COO',
@@ -551,9 +551,9 @@ export const metiers: MetierTaxonomy[] = [
     id: 'metier-developpeurs',
     type: 'metier',
     slug: {
-      fr: 'developpeurs-it',
-      en: 'developers-it',
-      es: 'desarrolladores-it',
+      fr: 'departements/ingenierie',
+      en: 'departments/engineering',
+      es: 'departamentos/ingenieria',
     },
     title: {
       fr: 'Développeurs & IT',
@@ -591,6 +591,50 @@ export const metiers: MetierTaxonomy[] = [
       'Erreurs de production',
       'Satisfaction développeurs',
     ],
+  },
+
+  // ============================================================================
+  // KNOWLEDGE MANAGEMENT
+  // ============================================================================
+  {
+    id: 'metier-knowledge',
+    type: 'metier',
+    slug: {
+      fr: 'departements/knowledge',
+      en: 'departments/knowledge',
+      es: 'departamentos/conocimiento',
+    },
+    title: {
+      fr: 'Knowledge Management',
+      en: 'Knowledge Management',
+      es: 'Gestión del Conocimiento',
+    },
+    description: {
+      fr: 'IA pour la gestion des connaissances. Capitalisation, documentation, partage du savoir.',
+      en: 'AI for knowledge management. Capitalization, documentation, knowledge sharing.',
+      es: 'IA para gestión del conocimiento. Capitalización, documentación, compartir saber.',
+    },
+    seoKeywords: {
+      fr: 'knowledge management IA, gestion connaissances, documentation IA, capitalisation savoir',
+      en: 'AI knowledge management, knowledge base, AI documentation, knowledge capitalization',
+      es: 'knowledge management IA, gestión conocimientos, documentación IA, capitalización saber',
+    },
+    icon: 'book-open',
+    priority: 'high',
+    batch: 1,
+    painPoints: [
+      "Connaissances dispersées dans l'entreprise",
+      'Perte de savoir lors des départs',
+      'Documentation obsolète ou inexistante',
+      "Recherche d'information chronophage",
+    ],
+    solutions: [
+      'Base de connaissances centralisée et intelligente',
+      'Extraction automatique des savoirs',
+      'Documentation auto-générée',
+      'Recherche sémantique unifiée',
+    ],
+    kpis: ['Temps de recherche', 'Documents indexés', "Taux d'adoption", 'Savoirs capitalisés'],
   },
 ]
 

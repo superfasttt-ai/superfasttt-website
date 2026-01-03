@@ -7,6 +7,7 @@ import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { CtaModern } from '../../blocks/CtaModern/config'
+import { FAQ } from '../../blocks/FAQ/config'
 import { FeatureGrid } from '../../blocks/FeatureGrid/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { HeroModern } from '../../blocks/HeroModern/config'
@@ -95,6 +96,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 MediaBlock,
                 Archive,
                 FormBlock,
+                FAQ,
               ],
               required: true,
               localized: true,

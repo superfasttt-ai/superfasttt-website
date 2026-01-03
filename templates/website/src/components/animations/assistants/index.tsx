@@ -49,29 +49,29 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
         <defs>
           {/* Gradient principal */}
           <linearGradient id="assistants-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#0d9488" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.8" />
           </linearGradient>
 
           {/* Gradient pour le hub central */}
           <radialGradient id="hub-gradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.9" />
-            <stop offset="70%" stopColor="#34d399" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#34d399" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="#0d9488" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#0d9488" stopOpacity="0.2" />
           </radialGradient>
 
           {/* Gradient pour les connexions */}
           <linearGradient id="conn-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.2" />
+            <stop offset="50%" stopColor="#0d9488" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.2" />
           </linearGradient>
 
           {/* Gradient pour les avatars */}
           <linearGradient id="avatar-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#34d399" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#0d9488" stopOpacity="0.5" />
           </linearGradient>
 
           {/* Filtre de lueur */}
@@ -183,7 +183,7 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
         {/* Flux de données du centre vers les assistants */}
         <g className="data-flows" filter="url(#signal-glow-assistants)">
           {ASSISTANTS.map((assistant, i) => (
-            <circle key={`flow-${i}`} r="4" fill="#22d3ee" opacity="0">
+            <circle key={`flow-${i}`} r="4" fill="#14B8A6" opacity="0">
               <animate
                 attributeName="cx"
                 values={`${CENTER.x};${assistant.x}`}
@@ -213,7 +213,7 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
         {/* Flux de retour des assistants vers le centre */}
         <g className="return-flows" filter="url(#signal-glow-assistants)">
           {ASSISTANTS.map((assistant, i) => (
-            <circle key={`return-${i}`} r="3" fill="#34d399" opacity="0">
+            <circle key={`return-${i}`} r="3" fill="#14B8A6" opacity="0">
               <animate
                 attributeName="cx"
                 values={`${assistant.x};${CENTER.x}`}
@@ -248,7 +248,7 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
             cy={CENTER.y}
             r="35"
             fill="none"
-            stroke="#22d3ee"
+            stroke="#14B8A6"
             strokeWidth="2"
             opacity="0.3"
           >
@@ -293,7 +293,7 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
                 cy={assistant.y}
                 r="28"
                 fill="none"
-                stroke="#34d399"
+                stroke="#14B8A6"
                 strokeWidth="1"
                 opacity="0"
               >
@@ -360,7 +360,7 @@ export const Assistants: React.FC<AssistantsProps> = ({ className = '' }) => {
             { x: 450, y: 350, delay: 3 },
             { x: 300, y: 80, delay: 0.5 },
           ].map((p, i) => (
-            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#22d3ee" opacity="0">
+            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#14B8A6" opacity="0">
               <animate
                 attributeName="cy"
                 values={`${p.y};${p.y - 20};${p.y}`}

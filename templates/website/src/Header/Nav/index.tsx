@@ -9,9 +9,21 @@ import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { MegaMenu } from '../MegaMenu'
 
-export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
+interface HeaderNavProps {
+  data: HeaderType
+  isOverDark?: boolean
+}
+
+export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isOverDark = false }) => {
   const navItems = data?.navItems || []
   const [openMenu, setOpenMenu] = useState<string | null>(null)
+
+  // Text colors based on background
+  const textColor = isOverDark ? 'text-white/80' : 'text-primary/70'
+  const textColorHover = isOverDark ? 'hover:text-accent' : 'hover:text-accent'
+  const textColorActive = isOverDark ? 'text-white' : 'text-primary'
+  const separatorColor = isOverDark ? 'bg-white/20' : 'bg-border'
+  const indicatorColor = isOverDark ? 'bg-white' : 'bg-primary'
 
   return (
     <nav className="flex items-center gap-1">
@@ -29,18 +41,18 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             >
               <button
                 className={`relative flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                  isOpen
-                    ? 'text-black dark:text-white'
-                    : 'text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white'
+                  isOpen ? textColorActive : `${textColor} ${textColorHover}`
                 }`}
               >
                 {label}
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                 />
-                {/* Indicateur blanc sous la rubrique active */}
+                {/* Indicateur sous la rubrique active */}
                 {isOpen && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-black dark:bg-white" />
+                  <span
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] ${indicatorColor}`}
+                  />
                 )}
               </button>
               {/* Zone de liaison invisible pour éviter que le menu se ferme */}
@@ -60,7 +72,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               key={i}
               {...link}
               appearance="link"
-              className="px-4 py-2 text-sm font-medium text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
+              className={`px-4 py-2 text-sm font-medium ${textColor} ${textColorHover} transition-all duration-200`}
             >
               {label}
             </CMSLink>
@@ -71,13 +83,13 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       })}
 
       {/* Separator */}
-      <div className="w-px h-6 bg-zinc-300 dark:bg-zinc-700 mx-2" />
+      <div className={`w-px h-6 ${separatorColor} mx-2`} />
 
       {/* Login Link */}
       {data.loginLink?.label && data.loginLink?.url && (
         <Link
           href={data.loginLink.url}
-          className="px-4 py-2 text-sm font-medium text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
+          className={`px-4 py-2 text-sm font-medium ${textColor} ${textColorHover} transition-all duration-200`}
         >
           {data.loginLink.label}
         </Link>
@@ -88,7 +100,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         <CMSLink
           {...data.ctaButton.link}
           appearance="default"
-          className="ml-1 px-4 py-2 text-sm font-medium bg-black dark:bg-white text-white dark:text-black border border-black dark:border-white hover:bg-transparent hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-all duration-200"
+          className="ml-1 px-4 py-2 text-sm font-medium bg-accent text-white border border-accent hover:bg-transparent hover:text-accent transition-all duration-200"
         >
           {data.ctaButton.label}
         </CMSLink>
@@ -97,7 +109,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       {/* Search */}
       <Link
         href="/search"
-        className="ml-2 p-2.5 text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-all duration-200"
+        className={`ml-2 p-2.5 ${textColor} ${textColorHover} transition-all duration-200`}
       >
         <span className="sr-only">Search</span>
         <SearchIcon className="w-4 h-4" />

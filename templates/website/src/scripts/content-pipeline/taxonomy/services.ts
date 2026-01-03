@@ -13,9 +13,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-rag',
     type: 'service',
     slug: {
-      fr: 'rag-base-connaissances',
-      en: 'rag-knowledge-base',
-      es: 'rag-base-conocimientos',
+      fr: 'produit/rag',
+      en: 'product/rag',
+      es: 'producto/rag',
     },
     title: {
       fr: 'RAG & Base de Connaissances',
@@ -131,9 +131,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-orchestration',
     type: 'service',
     slug: {
-      fr: 'orchestration-modeles',
-      en: 'model-orchestration',
-      es: 'orquestacion-modelos',
+      fr: 'produit/orchestration',
+      en: 'product/orchestration',
+      es: 'producto/orquestacion',
     },
     title: {
       fr: 'Orchestration Multi-Modèles',
@@ -240,9 +240,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-gouvernance',
     type: 'service',
     slug: {
-      fr: 'gouvernance-ia',
-      en: 'ai-governance',
-      es: 'gobernanza-ia',
+      fr: 'produit/gouvernance',
+      en: 'product/governance',
+      es: 'producto/gobernanza',
     },
     title: {
       fr: 'Gouvernance IA',
@@ -454,9 +454,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-agents-ia',
     type: 'service',
     slug: {
-      fr: 'agents-ia-metiers',
-      en: 'business-ai-agents',
-      es: 'agentes-ia-empresariales',
+      fr: 'produit/agents-ia',
+      en: 'product/ai-agents',
+      es: 'producto/agentes-ia',
     },
     title: {
       fr: 'Agents IA Métiers',
@@ -489,9 +489,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-integrations',
     type: 'service',
     slug: {
-      fr: 'integrations-connecteurs',
-      en: 'integrations-connectors',
-      es: 'integraciones-conectores',
+      fr: 'produit/integrations',
+      en: 'product/integrations',
+      es: 'producto/integraciones',
     },
     title: {
       fr: 'Intégrations & Connecteurs',
@@ -524,9 +524,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-apps-tierces',
     type: 'service',
     slug: {
-      fr: 'apps-tierces-marketplace',
-      en: 'third-party-apps-marketplace',
-      es: 'apps-terceros-marketplace',
+      fr: 'produit/apps',
+      en: 'product/apps',
+      es: 'producto/apps',
     },
     title: {
       fr: 'Apps Tierces & Marketplace',
@@ -559,9 +559,9 @@ export const services: ServiceTaxonomy[] = [
     id: 'service-deploiement',
     type: 'service',
     slug: {
-      fr: 'deploiement-souverainete',
-      en: 'deployment-sovereignty',
-      es: 'despliegue-soberania',
+      fr: 'produit/securite',
+      en: 'product/security',
+      es: 'producto/seguridad',
     },
     title: {
       fr: 'Déploiement & Souveraineté',
@@ -585,6 +585,80 @@ export const services: ServiceTaxonomy[] = [
     useCases: ['Données ultra-sensibles', 'Exigences réglementaires', 'Isolation complète'],
     benefits: ['Cloud Scaleway France', 'Installation en 48h', 'Support dédié'],
     targetAudiences: ['DSI', 'RSSI', 'DPO', 'Secteur public'],
+  },
+
+  // ============================================================================
+  // PAGES LANDING PRODUIT
+  // ============================================================================
+  {
+    id: 'service-overview',
+    type: 'service',
+    slug: {
+      fr: 'produit/vue-ensemble',
+      en: 'product/overview',
+      es: 'producto/resumen',
+    },
+    title: {
+      fr: "Vue d'ensemble",
+      en: 'Product Overview',
+      es: 'Visión General',
+    },
+    description: {
+      fr: 'Découvrez SUPERFASTTT, la plateforme IA tout-en-un pour les entreprises. RAG, Agents IA, Orchestration multi-modèles et Gouvernance.',
+      en: 'Discover SUPERFASTTT, the all-in-one AI platform for enterprises. RAG, AI Agents, Multi-model Orchestration and Governance.',
+      es: 'Descubra SUPERFASTTT, la plataforma IA todo-en-uno para empresas. RAG, Agentes IA, Orquestación multi-modelos y Gobernanza.',
+    },
+    seoKeywords: {
+      fr: 'plateforme IA entreprise, SUPERFASTTT, IA tout-en-un, solution IA B2B',
+      en: 'enterprise AI platform, SUPERFASTTT, all-in-one AI, B2B AI solution',
+      es: 'plataforma IA empresarial, SUPERFASTTT, IA todo-en-uno, solución IA B2B',
+    },
+    parentId: undefined,
+    icon: 'home',
+    priority: 'high',
+    batch: 0,
+    useCases: ["Déploiement IA à l'échelle", 'Centralisation des usages IA', 'Gouvernance unifiée'],
+    benefits: [
+      'Plateforme tout-en-un',
+      'Déploiement cloud ou on-premise',
+      'Support entreprise dédié',
+    ],
+    targetAudiences: ['DSI', 'CTO', 'COMEX', 'Innovation'],
+  },
+  {
+    id: 'service-api',
+    type: 'service',
+    slug: {
+      fr: 'produit/api',
+      en: 'product/api',
+      es: 'producto/api',
+    },
+    title: {
+      fr: 'API & Développeurs',
+      en: 'API & Developers',
+      es: 'API y Desarrolladores',
+    },
+    description: {
+      fr: 'Intégrez SUPERFASTTT dans vos applications avec notre API REST complète. SDK disponibles, webhooks, documentation interactive.',
+      en: 'Integrate SUPERFASTTT into your applications with our complete REST API. SDKs available, webhooks, interactive documentation.',
+      es: 'Integre SUPERFASTTT en sus aplicaciones con nuestra API REST completa. SDKs disponibles, webhooks, documentación interactiva.',
+    },
+    seoKeywords: {
+      fr: 'API IA, SDK développeur, intégration IA, REST API LLM',
+      en: 'AI API, developer SDK, AI integration, LLM REST API',
+      es: 'API IA, SDK desarrollador, integración IA, REST API LLM',
+    },
+    parentId: undefined,
+    icon: 'code',
+    priority: 'high',
+    batch: 0,
+    useCases: [
+      'Intégration dans applications métier',
+      'Automatisation de workflows',
+      "Développement d'extensions",
+    ],
+    benefits: ['API REST documentée', 'SDK Python, Node.js, Go', 'Sandbox de test gratuit'],
+    targetAudiences: ['Développeurs', 'CTO', 'Architectes', 'DevOps'],
   },
 ]
 

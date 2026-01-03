@@ -8,9 +8,9 @@ interface ModelsProps {
 
 // Modèles d'IA alignés horizontalement - couleurs comme le visuel de référence
 const MODELS = [
-  { id: 'openai', x: 100, y: 90, color: '#4ade80', delay: 0 }, // Vert clair
-  { id: 'anthropic', x: 200, y: 90, color: '#f59e0b', delay: 0.3 }, // Orange/jaune
-  { id: 'mistral', x: 300, y: 90, color: '#22d3ee', delay: 0.6 }, // Cyan
+  { id: 'openai', x: 100, y: 90, color: '#22C55E', delay: 0 }, // Success vert
+  { id: 'anthropic', x: 200, y: 90, color: '#F59E0B', delay: 0.3 }, // Warning orange
+  { id: 'mistral', x: 300, y: 90, color: '#14B8A6', delay: 0.6 }, // Accent teal
   { id: 'more', x: 400, y: 90, color: '#6b7280', delay: 0.9 }, // Gris
 ]
 
@@ -200,7 +200,7 @@ export const Models: React.FC<ModelsProps> = ({ className = '' }) => {
             height="90"
             rx="18"
             fill="none"
-            stroke="#22d3ee"
+            stroke="#14B8A6"
             strokeWidth="1"
             opacity="0"
           >
@@ -249,7 +249,7 @@ export const Models: React.FC<ModelsProps> = ({ className = '' }) => {
             { x: 350, y: 200, delay: 1.2 },
             { x: 420, y: 150, delay: 2.4 },
           ].map((p, i) => (
-            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#22d3ee" opacity="0">
+            <circle key={`particle-${i}`} cx={p.x} cy={p.y} r="2" fill="#14B8A6" opacity="0">
               <animate
                 attributeName="cy"
                 values={`${p.y};${p.y - 15};${p.y}`}
